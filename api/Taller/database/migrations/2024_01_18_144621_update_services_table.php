@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->string("type")->unique();
-            $table->string("disponibility"); //availability
-            $table->timestamps();
+        Schema::table('services', function (Blueprint $table) {
+            $table->dropUnique(['type']);
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::table('services', function (Blueprint $table) {
+            $table->unique('type');
+        });
     }
 };
