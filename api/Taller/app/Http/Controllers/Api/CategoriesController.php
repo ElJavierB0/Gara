@@ -8,21 +8,21 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
-    // public function list() {
-    //     $categories =  Categories::all();
-    //     $list = [];
-    //     foreach($categories as $categorie) {
-    //         $object = [
-    //             "id" => $categorie->id,
-    //             "Tipo" => $categorie->type,
-    //             "Detalles" => $categorie->details,
-    //             "created" => $categorie->created_at,
-    //             "updated" => $categorie->updated_at
-    //         ];
-    //         array_push($list, $object);
-    //     }
-    //     return response()->json($list);
-    // }
+    public function list() {
+        $categories =  Categories::all();
+        $list = [];
+        foreach($categories as $categorie) {
+            $object = [
+                "id" => $categorie->id,
+                "Tipo" => $categorie->type,
+                "Detalles" => $categorie->details,
+                "created" => $categorie->created_at,
+                "updated" => $categorie->updated_at
+            ];
+            array_push($list, $object);
+        }
+        return response()->json($list);
+    }
 
     public function item($id) {
         $categories =  Categories::where('id', '=', $id)->first();
