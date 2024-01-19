@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\EmployeesController;
 use App\Http\Controllers\Api\RecordsController;
 use App\Http\Controllers\Api\RemplacementsController;
 use App\Http\Controllers\Api\ServicesController;
+use App\Http\Controllers\Api\UsersController;
 use App\Models\Brands;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -50,3 +51,6 @@ Route::get('/Employees/{id}', [EmployeesController::class, 'item']);
 
 Route::get('/Admins', [AdminsController::class, 'list']);
 Route::get('/Admins/{id}', [AdminsController::class, 'item']);
+
+Route::get('/Users', [UsersController::class, 'list']);
+Route::get('/Users/{id}', [UsersController::class, 'item']);
