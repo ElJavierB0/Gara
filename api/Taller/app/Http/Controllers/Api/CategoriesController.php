@@ -35,4 +35,25 @@ class CategoriesController extends Controller
         ];
         return response()->json($object);
     }
+
+    public function create(Request $request) {
+        $data = $request->validate([
+            'details' => 'required|string',
+        ]);
+        $services = Categories::create([
+            'details'=>$data['details'],
+        ]);
+        if ($services) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $services,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
 }
