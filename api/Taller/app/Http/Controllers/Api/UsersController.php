@@ -52,13 +52,19 @@ class UsersController extends Controller
     // public function create(Request $request) {
     //     $data = $request->validate([
     //         'name' => 'required|string',
-    //         'type' => 'required|string',
-    //         'disponibility' => 'required'
+    //         'surname' => 'required|string',
+    //         'email' => 'required','string',
+    //         'phone' => 'required|int',
+    //         'password' => 'required|string',
+    //         'image' => 'required|string'
     //     ]);
     //     $services = Users::create([
     //         'name'=>$data['name'],
-    //         'type'=>$data['type'],
-    //         'disponibility'=>$data['disponibility']
+    //         'surname'=>$data['surname'],
+    //         'email'=>$data['email'],
+    //         'phone'=>$data['phone'],
+    //         'password'=>$data['password'],
+    //         'image'=>$data['image']
     //     ]);
     //     if ($services) {
     //         $object = [

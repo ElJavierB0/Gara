@@ -58,4 +58,30 @@ class CategoriesController extends Controller
             return response()->json($object);
         }
     }
+
+    public function update( Request $request){
+        $data = $request->validate([
+            'id' => 'required|int',
+            'type' => 'string',
+            'details' => 'string',
+        ]);
+
+        $categories =  Categories::where('id', '=', $data['id'])->first();
+
+        $categories->type = $data['type'];
+        $categories->details = $data['details'];
+
+        if ($categories->update()) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $categories,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
 }

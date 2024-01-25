@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/Categories', [CategoriesController::class, 'list']);
 Route::get('/Categories/{id}', [CategoriesController::class, 'item']);
 Route::post('/Categories/create', [CategoriesController::class, 'create']);
+Route::post('/Categories/{id}/update', [CategoriesController::class, 'update']);
 
 Route::get('/Services', [ServicesController::class, 'list']);
 Route::get('/Services/{id}', [ServicesController::class, 'item']);
@@ -50,7 +51,7 @@ Route::post('/Cars/create', [CarsController::class, 'create']);
 
 Route::get('/Records', [RecordsController::class, 'list']);
 Route::get('/Records/{id}', [RecordsController::class, 'item']);
-Route::post('/Records/create', [RecordsController::class, 'create']);
+// Route::post('/Records/create', [RecordsController::class, 'create']);
 
 Route::get('/Employees', [EmployeesController::class, 'list']);
 Route::get('/Employees/{id}', [EmployeesController::class, 'item']);
@@ -62,4 +63,4 @@ Route::post('/Admins/create', [AdminsController::class, 'create']);
 
 Route::get('/Users', [UsersController::class, 'list']);
 Route::get('/Users/{id}', [UsersController::class, 'item']);
-Route::post('/Users/create', [UsersController::class, 'create']);
+// Route::post('/Users/create', [UsersController::class, 'create']);
