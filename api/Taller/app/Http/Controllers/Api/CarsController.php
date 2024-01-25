@@ -39,4 +39,31 @@ class CarsController extends Controller
         ];
         return response()->json($object);
     }
+
+    public function create(Request $request) {
+        $data = $request->validate([
+            'name' => 'required|string',
+            'status' => 'required|string',
+            'img' => 'required|string',
+            'brand_id' => 'required|int',
+        ]);
+        $services = Cars::create([
+            'name'=>$data['name'],
+            'status'=>$data['status'],
+            'img'=>$data['img'],
+            'brand_id'=>$data['brand_id']
+        ]);
+        if ($services) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $services,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
 }

@@ -38,9 +38,11 @@ class CategoriesController extends Controller
 
     public function create(Request $request) {
         $data = $request->validate([
+            'type' => 'required|string',
             'details' => 'required|string',
         ]);
         $services = Categories::create([
+            'type'=>$data['type'],
             'details'=>$data['details'],
         ]);
         if ($services) {

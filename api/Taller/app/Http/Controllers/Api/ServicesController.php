@@ -42,7 +42,7 @@ class ServicesController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'type' => 'required|string',
-            'disponibility' => 'required|string'
+            'disponibility' => 'required'
         ]);
         $services = Services::create([
             'name'=>$data['name'],

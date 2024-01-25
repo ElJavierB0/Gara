@@ -41,4 +41,33 @@ class EmployeesController extends Controller
         ];
         return response()->json($object);
     }
+
+    public function create(Request $request) {
+        $data = $request->validate([
+            'name' => 'required|string',
+            'lastn' => 'required|string',
+            'password' => 'required|string',
+            'img' => 'required|string',
+            'number' => 'required|int',
+        ]);
+        $services = Employees::create([
+            'name'=>$data['name'],
+            'lastn'=>$data['lastn'],
+            'password'=>$data['password'],
+            'img'=>$data['img'],
+            'number'=>$data['number'],
+        ]);
+        if ($services) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $services,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
 }

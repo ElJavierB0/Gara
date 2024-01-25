@@ -38,27 +38,28 @@ Route::post('/Services/create', [ServicesController::class, 'create']);
 
 Route::get('/Remplacements', [RemplacementsController::class, 'list']);
 Route::get('/Remplacements/{id}', [RemplacementsController::class, 'item']);
-
+Route::post('/Remplacements/create', [RemplacementsController::class, 'create']);
 
 Route::get('/Brands', [BrandsController::class, 'list']);
 Route::get('/Brands/{id}', [BrandsController::class, 'item']);
-
+Route::post('/Brands/create', [BrandsController::class, 'create']);
 
 Route::get('/Cars', [CarsController::class, 'list']);
 Route::get('/Cars/{id}', [CarsController::class, 'item']);
-
+Route::post('/Cars/create', [CarsController::class, 'create']);
 
 Route::get('/Records', [RecordsController::class, 'list']);
 Route::get('/Records/{id}', [RecordsController::class, 'item']);
-
+Route::post('/Records/create', [RecordsController::class, 'create']);
 
 Route::get('/Employees', [EmployeesController::class, 'list']);
 Route::get('/Employees/{id}', [EmployeesController::class, 'item']);
-
+Route::post('/Employees/create', [EmployeesController::class, 'create']);
 
 Route::get('/Admins', [AdminsController::class, 'list']);
 Route::get('/Admins/{id}', [AdminsController::class, 'item']);
-
+Route::post('/Admins/create', [AdminsController::class, 'create']);
 
 Route::get('/Users', [UsersController::class, 'list']);
 Route::get('/Users/{id}', [UsersController::class, 'item']);
+Route::post('/Users/create', [UsersController::class, 'create']);

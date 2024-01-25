@@ -37,4 +37,27 @@ class BrandsController extends Controller
         ];
         return response()->json($object);
     }
+
+    public function create(Request $request) {
+        $data = $request->validate([
+            'name' => 'required|string',
+            'category_id' => 'required|int',
+        ]);
+        $services = Brands::create([
+            'name'=>$data['name'],
+            'category_id'=>$data['category_id'],
+        ]);
+        if ($services) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $services,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
 }

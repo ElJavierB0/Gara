@@ -48,4 +48,29 @@ class UsersController extends Controller
         ];
         return response()->json($object);
     }
+
+    // public function create(Request $request) {
+    //     $data = $request->validate([
+    //         'name' => 'required|string',
+    //         'type' => 'required|string',
+    //         'disponibility' => 'required'
+    //     ]);
+    //     $services = Users::create([
+    //         'name'=>$data['name'],
+    //         'type'=>$data['type'],
+    //         'disponibility'=>$data['disponibility']
+    //     ]);
+    //     if ($services) {
+    //         $object = [
+    //             "response" => 'Success. Item saved correctly.',
+    //             "data" => $services,
+    //         ];
+    //         return response()->json($object);
+    //     }else{
+    //         $object = [
+    //             "response" => 'Error: Something went wrong, please try again.'
+    //         ];
+    //         return response()->json($object);
+    //     }
+    // }
 }
