@@ -1,0 +1,14 @@
+/* .d-flex.justify-content-between {
+    margin: 0px; /* Ajusta el valor según sea necesario 
+} */
+
+.custom-image {         
+    width: 100px;   /* Establece el ancho deseado */         
+    height: 250px;  /* Ajusta automáticamente la altura según el ancho */  
+    /* margin: 0px;  Ajusta el valor para el espacio entre imágenes */
+}
+.image{         
+    width: 40px;   /* Establece el ancho deseado */         
+    height: 80px;  /* Ajusta automáticamente la altura según el ancho */  
+    /* margin: 0px;  Ajusta el valor para el espacio entre imágenes */
+}
