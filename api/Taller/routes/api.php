@@ -28,10 +28,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/Categories', [CategoriesController::class, 'list']);
-Route::get('/Categories/{id}', [CategoriesController::class, 'item']);
-Route::post('/Categories/create', [CategoriesController::class, 'create']);
-Route::post('/Categories/{id}/update', [CategoriesController::class, 'update']);
+Route::get('/Categorie', [CategorieController::class, 'list']);
+Route::get('/Categorie/{id}', [Categorie::class, 'item']);
+Route::post('/Categorie/create', [Categorie::class, 'create']);
+Route::post('/Categorie/{id}/update', [Categorie::class, 'update']);
 
 Route::get('/Services', [ServicesController::class, 'list']);
 Route::get('/Services/{id}', [ServicesController::class, 'item']);
@@ -56,19 +56,19 @@ Route::post('/Cars/{id}/update', [CarsController::class, 'update']);
 Route::get('/Records', [RecordsController::class, 'list']);
 Route::get('/Records/{id}', [RecordsController::class, 'item']);
 // Route::post('/Records/create', [RecordsController::class, 'create']);
-Route::post('/Records/{id}/update', [RecordsController::class, 'update']);
+// Route::post('/Records/{id}/update', [RecordsController::class, 'update']);
 
 Route::get('/Employees', [EmployeesController::class, 'list']);
 Route::get('/Employees/{id}', [EmployeesController::class, 'item']);
-Route::post('/Employees/create', [EmployeesController::class, 'create']);
-Route::post('/Employees/{id}/update', [EmployeesController::class, 'update']);
+// Route::post('/Employees/create', [EmployeesController::class, 'create']);
+// Route::post('/Employees/{id}/update', [EmployeesController::class, 'update']);
 
 Route::get('/Admins', [AdminsController::class, 'list']);
 Route::get('/Admins/{id}', [AdminsController::class, 'item']);
-Route::post('/Admins/create', [AdminsController::class, 'create']);
-Route::post('/Admins/{id}/update', [AdminsController::class, 'update']);
+// Route::post('/Admins/create', [AdminsController::class, 'create']);
+// Route::post('/Admins/{id}/update', [AdminsController::class, 'update']);
 
 Route::get('/Users', [UsersController::class, 'list']);
 Route::get('/Users/{id}', [UsersController::class, 'item']);
 // Route::post('/Users/create', [UsersController::class, 'create']);
-Route::post('/Users/{id}/update', [UsersController::class, 'update']);
+// Route::post('/Users/{id}/update', [UsersController::class, 'update']);
