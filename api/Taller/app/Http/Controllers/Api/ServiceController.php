@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Remplacements;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
-class RemplacementsController extends Controller
+class ServiceController extends Controller
 {
     public function list() {
-        $remplacements =  Remplacements::all();
+        $services =  Service::all();
         $list = [];
-        foreach($remplacements as $remplacement) {
+        foreach($services as $service) {
             $object = [
-                "id" => $remplacement->id,
-                "Nombre" => $remplacement->name,
-                "Tipo" => $remplacement->type,
-                "created" => $remplacement->created_at,
-                "updated" => $remplacement->updated_at
+                "id" => $service->id,
+                "Nombre" => $service->name,
+                "Tipo" => $service->type,
+                "Disponibilidad" => $service->disponibility,
+                "created" => $service->created_at,
+                "updated" => $service->updated_at
             ];
             array_push($list, $object);
         }
@@ -25,13 +26,14 @@ class RemplacementsController extends Controller
     }
 
     public function item($id) {
-        $remplacements =  Remplacements::where('id', '=', $id)->first();
+        $services =  Service::where('id', '=', $id)->first();
         $object = [
-            "id" => $remplacements->id,
-            "Nombre" => $remplacements->name,
-            "Tipo" => $remplacements->type,
-            "created" => $remplacements->created_at,
-            "updated" => $remplacements->updated_at
+            "id" => $services->id,
+            "Nombre" => $services->name,
+            "Tipo" => $services->type,
+            "Disponibilidad" => $services->disponibility,
+            "created" => $services->created_at,
+            "updated" => $services->updated_at
         ];
         return response()->json($object);
     }
@@ -40,15 +42,17 @@ class RemplacementsController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'type' => 'required|string',
+            'disponibility' => 'required'
         ]);
-        $remplacements = Remplacements::create([
+        $services = Service::create([
             'name'=>$data['name'],
             'type'=>$data['type'],
+            'disponibility'=>$data['disponibility']
         ]);
-        if ($remplacements) {
+        if ($services) {
             $object = [
                 "response" => 'Success. Item saved correctly.',
-                "data" => $remplacements,
+                "data" => $services,
             ];
             return response()->json($object);
         }else{
@@ -64,17 +68,19 @@ class RemplacementsController extends Controller
             'id' => 'required|int',
             'name' => 'string',
             'type' => 'string',
+            'disponibility' => 'string'
         ]);
 
-        $remplacements =  Remplacements::where('id', '=', $data['id'])->first();
+        $services =  Service::where('id', '=', $data['id'])->first();
 
-        $remplacements->name = $data['name'];
-        $remplacements->type = $data['type'];
+        $services->name = $data['name'];
+        $services->type = $data['type'];
+        $services->disponibility = $data['disponibility'];
 
-        if ($remplacements->update()) {
+        if ($services->update()) {
             $object = [
                 "response" => 'Success. Item saved correctly.',
-                "data" => $remplacements,
+                "data" => $services,
             ];
             return response()->json($object);
         }else{
