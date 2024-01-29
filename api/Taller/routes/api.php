@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api\AdminsController;
-use App\Http\Controllers\Api\EmployeesController;
-use App\Http\Controllers\Api\RecordsController;
-use App\Http\Controllers\Api\ServiceController;
-use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\RemplacementController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,10 +32,10 @@ Route::get('/Categories/{id}', [CategoryController::class, 'item']);
 Route::post('/Categories/create', [CategoryController::class, 'create']);
 Route::post('/Categories/{id}/update', [CategoryController::class, 'update']);
 
-Route::get('/Services', [ServiceController::class, 'list']);
-Route::get('/Services/{id}', [ServiceController::class, 'item']);
-Route::post('/Services/create', [ServiceController::class, 'create']);
-Route::post('/Services/{id}/update', [ServiceController::class, 'update']);
+Route::get('/Services', [ServicesController::class, 'list']);
+Route::get('/Services/{id}', [ServicesController::class, 'item']);
+Route::post('/Services/create', [ServicesController::class, 'create']);
+Route::post('/Services/{id}/update', [ServicesController::class, 'update']);
 
 Route::get('/Remplacements', [RemplacementController::class, 'list']);
 Route::get('/Remplacements/{id}', [RemplacementController::class, 'item']);
@@ -58,17 +57,17 @@ Route::get('/Records/{id}', [RecordController::class, 'item']);
 // Route::post('/Records/create', [RecordController::class, 'create']);
 // Route::post('/Records/{id}/update', [RecordController::class, 'update']);
 
-Route::get('/Employees', [EmployeesController::class, 'list']);
-Route::get('/Employees/{id}', [EmployeesController::class, 'item']);
-// Route::post('/Employees/create', [EmployeesController::class, 'create']);
-// Route::post('/Employees/{id}/update', [EmployeesController::class, 'update']);
+Route::get('/Employees', [EmployeeController::class, 'list']);
+Route::get('/Employees/{id}', [EmployeeController::class, 'item']);
+// Route::post('/Employees/create', [EmployeeController::class, 'create']);
+// Route::post('/Employees/{id}/update', [EmployeeController::class, 'update']);
 
-Route::get('/Admins', [AdminsController::class, 'list']);
-Route::get('/Admins/{id}', [AdminsController::class, 'item']);
-// Route::post('/Admins/create', [AdminsController::class, 'create']);
-// Route::post('/Admins/{id}/update', [AdminsController::class, 'update']);
+Route::get('/Admins', [AdminController::class, 'list']);
+Route::get('/Admins/{id}', [AdminController::class, 'item']);
+// Route::post('/Admins/create', [AdminController::class, 'create']);
+// Route::post('/Admins/{id}/update', [AdminController::class, 'update']);
 
-Route::get('/Users', [UsersController::class, 'list']);
-Route::get('/Users/{id}', [UsersController::class, 'item']);
-// Route::post('/Users/create', [UsersController::class, 'create']);
-// Route::post('/Users/{id}/update', [UsersController::class, 'update']);
+Route::get('/Users', [UserController::class, 'list']);
+Route::get('/Users/{id}', [UserController::class, 'item']);
+// Route::post('/Users/create', [UserController::class, 'create']);
+// Route::post('/Users/{id}/update', [UserController::class, 'update']);

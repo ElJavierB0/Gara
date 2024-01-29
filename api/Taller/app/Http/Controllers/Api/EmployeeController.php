@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Employees;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
-class EmployeesController extends Controller
+class EmployeeController extends Controller
 {
     public function list() {
-        $employees =  Employees::all();
+        $employees =  Employee::all();
         $list = [];
         foreach($employees as $employee) {
             $object = [
@@ -28,7 +28,7 @@ class EmployeesController extends Controller
     }
 
     public function item($id) {
-        $employee =  Employees::where('id', '=', $id)->first();
+        $employee =  Employee::where('id', '=', $id)->first();
         $object = [
             "id" => $employee->id,
             "Nombre" => $employee->name,
@@ -50,7 +50,7 @@ class EmployeesController extends Controller
             'img' => 'required|string',
             'number' => 'required|int',
         ]);
-        $employees = Employees::create([
+        $employees = Employee::create([
             'name'=>$data['name'],
             'lastn'=>$data['lastn'],
             'password'=>$data['password'],
@@ -78,7 +78,7 @@ class EmployeesController extends Controller
             'number' => 'required|string',
         ]);
 
-        $employees =  Employees::where('id', '=', $data['id'])->first();
+        $employees =  Employee::where('id', '=', $data['id'])->first();
 
         $employees->img = $data['img'];
         $employees->number = $data['number'];

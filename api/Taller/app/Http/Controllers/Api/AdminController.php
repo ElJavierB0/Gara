@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admins;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
-class AdminsController extends Controller
+class AdminController extends Controller
 {
     public function list() {
-        $admins =  Admins::all();
+        $admins =  Admin::all();
         $list = [];
         foreach($admins as $admin) {
             $object = [
@@ -27,7 +27,7 @@ class AdminsController extends Controller
     }
 
     public function item($id) {
-        $admin =  Admins::where('id', '=', $id)->first();
+        $admin =  Admin::where('id', '=', $id)->first();
         $object = [
             "id" => $admin->id,
             "Nombre" => $admin->name,
@@ -47,7 +47,7 @@ class AdminsController extends Controller
             'password' => 'required|string',
             'img' => 'required|string'
         ]);
-        $admins = Admins::create([
+        $admins = Admin::create([
             'name'=>$data['name'],
             'nick'=>$data['nick'],
             'password'=> $data['password'],
@@ -76,7 +76,7 @@ class AdminsController extends Controller
             'img' => 'required|string',
         ]);
 
-        $admin =  Admins::where('id', '=', $data['id'])->first();
+        $admin =  Admin::where('id', '=', $data['id'])->first();
 
         $admin->name = $data['name'];
         $admin->nick = $data['nick'];

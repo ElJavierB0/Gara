@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Users;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -32,7 +31,7 @@ class UsersController extends Controller
     }
 
     public function item($id) {
-        $users =  Users::where('id', '=', $id)->first();
+        $users =  User::where('id', '=', $id)->first();
         $object = [
             "id" => $users->id,
             "Nombre" => $users->name,
@@ -58,7 +57,7 @@ class UsersController extends Controller
     //         'password' => 'required|string',
     //         'image' => 'required|string'
     //     ]);
-    //     $users = Users::create([
+    //     $users = User::create([
     //         'name'=>$data['name'],
     //         'surname'=>$data['surname'],
     //         'email'=>$data['email'],
@@ -88,7 +87,7 @@ class UsersController extends Controller
             'image' => 'required|string',
         ]);
 
-        $users =  Users::where('id', '=', $data['id'])->first();
+        $users =  User::where('id', '=', $data['id'])->first();
 
         $users->email = $data['email'];
         $users->phone = $data['phone'];
