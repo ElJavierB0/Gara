@@ -41,14 +41,14 @@ class CategoriesController extends Controller
             'type' => 'required|string',
             'details' => 'required|string',
         ]);
-        $services = Categories::create([
+        $categories = Categories::create([
             'type'=>$data['type'],
             'details'=>$data['details'],
         ]);
-        if ($services) {
+        if ($categories) {
             $object = [
                 "response" => 'Success. Item saved correctly.',
-                "data" => $services,
+                "data" => $categories,
             ];
             return response()->json($object);
         }else{

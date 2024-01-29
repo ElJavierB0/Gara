@@ -41,14 +41,40 @@ class RemplacementsController extends Controller
             'name' => 'required|string',
             'type' => 'required|string',
         ]);
-        $services = Remplacements::create([
+        $remplacements = Remplacements::create([
             'name'=>$data['name'],
             'type'=>$data['type'],
         ]);
-        if ($services) {
+        if ($remplacements) {
             $object = [
                 "response" => 'Success. Item saved correctly.',
-                "data" => $services,
+                "data" => $remplacements,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
+
+    public function update( Request $request){
+        $data = $request->validate([
+            'id' => 'required|int',
+            'name' => 'string',
+            'type' => 'string',
+        ]);
+
+        $remplacements =  Remplacements::where('id', '=', $data['id'])->first();
+
+        $remplacements->name = $data['name'];
+        $remplacements->type = $data['type'];
+
+        if ($remplacements->update()) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $remplacements,
             ];
             return response()->json($object);
         }else{

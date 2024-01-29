@@ -62,4 +62,32 @@ class ServicesController extends Controller
             return response()->json($object);
         }
     }
+
+    public function update( Request $request){
+        $data = $request->validate([
+            'id' => 'required|int',
+            'name' => 'string',
+            'type' => 'string',
+            'disponibility' => 'string'
+        ]);
+
+        $services =  Services::where('id', '=', $data['id'])->first();
+
+        $services->name = $data['name'];
+        $services->type = $data['type'];
+        $services->disponibility = $data['disponibility'];
+
+        if ($services->update()) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $services,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
 }
