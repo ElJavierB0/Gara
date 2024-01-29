@@ -43,14 +43,42 @@ class BrandsController extends Controller
             'name' => 'required|string',
             'category_id' => 'required|int',
         ]);
-        $services = Brands::create([
+        $brands = Brands::create([
             'name'=>$data['name'],
             'category_id'=>$data['category_id'],
         ]);
-        if ($services) {
+        if ($brands) {
             $object = [
                 "response" => 'Success. Item saved correctly.',
-                "data" => $services,
+                "data" => $brands,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
+
+    public function update( Request $request){
+        $data = $request->validate([
+            'id' => 'required|int',
+            'name' => 'string',
+            'logo' => 'string',
+            'category_id' => 'int',
+        ]);
+
+        $brands =  Brands::where('id', '=', $data['id'])->first();
+
+        $brands->name = $data['name'];
+        $brands->logo = $data['logo'];
+        $brands->category_id = $data['category_id'];
+
+        if ($brands->update()) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $brands,
             ];
             return response()->json($object);
         }else{

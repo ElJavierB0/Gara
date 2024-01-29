@@ -42,19 +42,21 @@ class RecordsController extends Controller
 
     // public function create(Request $request) {
     //     $data = $request->validate([
-    //         'name' => 'required|string',
-    //         'type' => 'required|string',
-    //         'disponibility' => 'required'
+    //         'date' => 'required|string',
+    //         'service_id' => 'required|string',
+    //         'employee_id' => 'required|string',
+    //         'remplacement_id' => 'required|string',
     //     ]);
-    //     $services = Records::create([
+    //     $records = Records::create([
     //         'name'=>$data['name'],
-    //         'type'=>$data['type'],
-    //         'disponibility'=>$data['disponibility']
+    //         'service_id'=>$data['service_id'],
+    //         'employee_id'=>$data['employee_id']
+    //         'remplacement_id'=>$data['remplacement_id']
     //     ]);
-    //     if ($services) {
+    //     if ($records) {
     //         $object = [
     //             "response" => 'Success. Item saved correctly.',
-    //             "data" => $services,
+    //             "data" => $records,
     //         ];
     //         return response()->json($object);
     //     }else{
@@ -64,4 +66,34 @@ class RecordsController extends Controller
     //         return response()->json($object);
     //     }
     // }
+
+    public function update( Request $request){
+        $data = $request->validate([
+            'id' => 'required|int',
+            'date' => 'string',
+            'service_id' => 'required|string',
+            'employee_id' => 'required|string',
+            'remplacement_id' => 'required|string',
+        ]);
+
+        $records =  Records::where('id', '=', $data['id'])->first();
+
+        $records->date = $data['date'];
+        $records->service_id = $data['service_id'];
+        $records->employee_id = $data['employee_id'];
+        $records->remplacement_id = $data['remplacement_id'];
+
+        if ($records->update()) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $records,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
 }

@@ -47,16 +47,46 @@ class CarsController extends Controller
             'img' => 'required|string',
             'brand_id' => 'required|int',
         ]);
-        $services = Cars::create([
+        $cars = Cars::create([
             'name'=>$data['name'],
             'status'=>$data['status'],
             'img'=>$data['img'],
             'brand_id'=>$data['brand_id']
         ]);
-        if ($services) {
+        if ($cars) {
             $object = [
                 "response" => 'Success. Item saved correctly.',
-                "data" => $services,
+                "data" => $cars,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
+
+    public function update( Request $request){
+        $data = $request->validate([
+            'id' => 'required|int',
+            'name' => 'string',
+            'status' => 'string',
+            'img' => 'string',
+            'brand_id' => 'required|int',
+        ]);
+
+        $cars =  Cars::where('id', '=', $data['id'])->first();
+
+        $cars->name = $data['name'];
+        $cars->status = $data['status'];
+        $cars->img = $data['img'];
+        $cars->brand_id = $data['brand_id'];
+
+        if ($cars->update()) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $cars,
             ];
             return response()->json($object);
         }else{
