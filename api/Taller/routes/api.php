@@ -28,10 +28,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/Categorie', [CategorieController::class, 'list']);
-Route::get('/Categorie/{id}', [Categorie::class, 'item']);
-Route::post('/Categorie/create', [Categorie::class, 'create']);
-Route::post('/Categorie/{id}/update', [Categorie::class, 'update']);
+Route::get('/Categories', [CategoriesController::class, 'list']);
+Route::get('/Categories/{id}', [CategoriesController::class, 'item']);
+Route::post('/Categories/create', [CategoriesController::class, 'create']);
+Route::post('/Categories/{id}/update', [CategoriesController::class, 'update']);
 
 Route::get('/Services', [ServicesController::class, 'list']);
 Route::get('/Services/{id}', [ServicesController::class, 'item']);
