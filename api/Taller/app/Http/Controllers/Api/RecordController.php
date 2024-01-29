@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Records;
+use App\Models\Record;
 use Illuminate\Http\Request;
 
-class RecordsController extends Controller
+class RecordController extends Controller
 {
     public function list() {
-        $records =  Records::all();
+        $records =  Record::all();
         $list = [];
         foreach($records as $record) {
             $object = [
@@ -27,7 +27,7 @@ class RecordsController extends Controller
     }
 
     public function item($id) {
-        $record =  Records::where('id', '=', $id)->first();
+        $record =  Record::where('id', '=', $id)->first();
         $object = [
             "id" => $record->id,
             "Fecha" => $record->date,
@@ -47,7 +47,7 @@ class RecordsController extends Controller
     //         'employee_id' => 'required|string',
     //         'remplacement_id' => 'required|string',
     //     ]);
-    //     $records = Records::create([
+    //     $records = Record::create([
     //         'name'=>$data['name'],
     //         'service_id'=>$data['service_id'],
     //         'employee_id'=>$data['employee_id']
@@ -76,7 +76,7 @@ class RecordsController extends Controller
     //         'remplacement_id' => 'required|string',
     //     ]);
 
-    //     $records =  Records::where('id', '=', $data['id'])->first();
+    //     $records =  Record::where('id', '=', $data['id'])->first();
 
     //     $records->date = $data['date'];
     //     $records->service_id = $data['service_id'];

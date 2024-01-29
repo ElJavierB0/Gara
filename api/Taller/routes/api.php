@@ -1,17 +1,15 @@
 <?php
 
 use App\Http\Controllers\Api\AdminsController;
-use App\Http\Controllers\Api\BrandsController;
-use App\Http\Controllers\Api\CarsController;
 use App\Http\Controllers\Api\EmployeesController;
 use App\Http\Controllers\Api\RecordsController;
-use App\Http\Controllers\Api\RemplacementsController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RecordController;
 use App\Http\Controllers\RemplacementController;
-use App\Models\Brands;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,20 +43,20 @@ Route::get('/Remplacements/{id}', [RemplacementController::class, 'item']);
 Route::post('/Remplacements/create', [RemplacementController::class, 'create']);
 Route::post('/Remplacements/{id}/update', [RemplacementController::class, 'update']);
 
-Route::get('/Brands', [BrandsController::class, 'list']);
-Route::get('/Brands/{id}', [BrandsController::class, 'item']);
-Route::post('/Brands/create', [BrandsController::class, 'create']);
-Route::post('/Brands/{id}/update', [BrandsController::class, 'update']);
+Route::get('/Brands', [BrandController::class, 'list']);
+Route::get('/Brands/{id}', [BrandController::class, 'item']);
+Route::post('/Brands/create', [BrandController::class, 'create']);
+Route::post('/Brands/{id}/update', [BrandController::class, 'update']);
 
-Route::get('/Cars', [CarsController::class, 'list']);
-Route::get('/Cars/{id}', [CarsController::class, 'item']);
-Route::post('/Cars/create', [CarsController::class, 'create']);
-Route::post('/Cars/{id}/update', [CarsController::class, 'update']);
+Route::get('/Cars', [CarController::class, 'list']);
+Route::get('/Cars/{id}', [CarController::class, 'item']);
+Route::post('/Cars/create', [CarController::class, 'create']);
+Route::post('/Cars/{id}/update', [CarController::class, 'update']);
 
-Route::get('/Records', [RecordsController::class, 'list']);
-Route::get('/Records/{id}', [RecordsController::class, 'item']);
-// Route::post('/Records/create', [RecordsController::class, 'create']);
-// Route::post('/Records/{id}/update', [RecordsController::class, 'update']);
+Route::get('/Records', [RecordController::class, 'list']);
+Route::get('/Records/{id}', [RecordController::class, 'item']);
+// Route::post('/Records/create', [RecordController::class, 'create']);
+// Route::post('/Records/{id}/update', [RecordController::class, 'update']);
 
 Route::get('/Employees', [EmployeesController::class, 'list']);
 Route::get('/Employees/{id}', [EmployeesController::class, 'item']);

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cars;
+use App\Models\Car;
 use Illuminate\Http\Request;
 
-class CarsController extends Controller
+class CarController extends Controller
 {
     public function list() {
-        $cars =  Cars::all();
+        $cars =  Car::all();
         $list = [];
         foreach($cars as $car) {
             $object = [
@@ -27,7 +27,7 @@ class CarsController extends Controller
     }
 
     public function item($id) {
-        $cars =  Cars::where('id', '=', $id)->first();
+        $cars =  Car::where('id', '=', $id)->first();
         $object = [
             "id" => $cars->id,
             "Nombre" => $cars->name,
@@ -47,7 +47,7 @@ class CarsController extends Controller
             'img' => 'required|string',
             'brand_id' => 'required|int',
         ]);
-        $cars = Cars::create([
+        $cars = Car::create([
             'name'=>$data['name'],
             'status'=>$data['status'],
             'img'=>$data['img'],
@@ -76,7 +76,7 @@ class CarsController extends Controller
             'brand_id' => 'required|int',
         ]);
 
-        $cars =  Cars::where('id', '=', $data['id'])->first();
+        $cars =  Car::where('id', '=', $data['id'])->first();
 
         $cars->name = $data['name'];
         $cars->status = $data['status'];

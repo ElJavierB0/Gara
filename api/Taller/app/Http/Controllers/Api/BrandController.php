@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brands;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
-class BrandsController extends Controller
+class BrandController extends Controller
 {
     public function list() {
-        $brands =  Brands::all();
+        $brands =  Brand::all();
         $list = [];
         foreach($brands as $brand) {
             $object = [
@@ -26,7 +26,7 @@ class BrandsController extends Controller
     }
 
     public function item($id) {
-        $brands =  Brands::where('id', '=', $id)->first();
+        $brands =  Brand::where('id', '=', $id)->first();
         $object = [
             "id" => $brands->id,
             "Nombre" => $brands->name,
@@ -43,7 +43,7 @@ class BrandsController extends Controller
             'name' => 'required|string',
             'category_id' => 'required|int',
         ]);
-        $brands = Brands::create([
+        $brands = Brand::create([
             'name'=>$data['name'],
             'category_id'=>$data['category_id'],
         ]);
@@ -69,7 +69,7 @@ class BrandsController extends Controller
             'category_id' => 'int',
         ]);
 
-        $brands =  Brands::where('id', '=', $data['id'])->first();
+        $brands =  Brand::where('id', '=', $data['id'])->first();
 
         $brands->name = $data['name'];
         $brands->logo = $data['logo'];
