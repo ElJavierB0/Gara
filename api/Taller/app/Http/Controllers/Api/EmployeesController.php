@@ -50,17 +50,43 @@ class EmployeesController extends Controller
             'img' => 'required|string',
             'number' => 'required|int',
         ]);
-        $services = Employees::create([
+        $employees = Employees::create([
             'name'=>$data['name'],
             'lastn'=>$data['lastn'],
             'password'=>$data['password'],
             'img'=>$data['img'],
             'number'=>$data['number'],
         ]);
-        if ($services) {
+        if ($employees) {
             $object = [
                 "response" => 'Success. Item saved correctly.',
-                "data" => $services,
+                "data" => $employees,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
+
+    public function update( Request $request){
+        $data = $request->validate([
+            'id' => 'required|int',
+            'img' => 'required|string',
+            'number' => 'required|string',
+        ]);
+
+        $employees =  Employees::where('id', '=', $data['id'])->first();
+
+        $employees->img = $data['img'];
+        $employees->number = $data['number'];
+
+        if ($employees->update()) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $employees,
             ];
             return response()->json($object);
         }else{

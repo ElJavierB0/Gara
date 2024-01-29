@@ -58,7 +58,7 @@ class UsersController extends Controller
     //         'password' => 'required|string',
     //         'image' => 'required|string'
     //     ]);
-    //     $services = Users::create([
+    //     $users = Users::create([
     //         'name'=>$data['name'],
     //         'surname'=>$data['surname'],
     //         'email'=>$data['email'],
@@ -66,10 +66,10 @@ class UsersController extends Controller
     //         'password'=>$data['password'],
     //         'image'=>$data['image']
     //     ]);
-    //     if ($services) {
+    //     if ($users) {
     //         $object = [
     //             "response" => 'Success. Item saved correctly.',
-    //             "data" => $services,
+    //             "data" => $users,
     //         ];
     //         return response()->json($object);
     //     }else{
@@ -79,4 +79,32 @@ class UsersController extends Controller
     //         return response()->json($object);
     //     }
     // }
+
+    public function update( Request $request){
+        $data = $request->validate([
+            'id' => 'required|int',
+            'email' => 'required|string',
+            'phone' => 'required|int',
+            'image' => 'required|string',
+        ]);
+
+        $users =  Users::where('id', '=', $data['id'])->first();
+
+        $users->email = $data['email'];
+        $users->phone = $data['phone'];
+        $users->image = $data['image'];
+
+        if ($users->update()) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $users    ,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
 }

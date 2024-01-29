@@ -47,16 +47,46 @@ class AdminsController extends Controller
             'password' => 'required|string',
             'img' => 'required|string'
         ]);
-        $services = Admins::create([
+        $admins = Admins::create([
             'name'=>$data['name'],
             'nick'=>$data['nick'],
             'password'=> $data['password'],
             'img'=>$data['img']
         ]);
-        if ($services) {
+        if ($admins) {
             $object = [
                 "response" => 'Success. Item saved correctly.',
-                "data" => $services,
+                "data" => $admins,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
+
+    public function update( Request $request){
+        $data = $request->validate([
+            'id' => 'required|int',
+            'name' => 'string',
+            'nick' => 'string',
+            'password' => 'required|string',
+            'img' => 'required|string',
+        ]);
+
+        $admin =  Admins::where('id', '=', $data['id'])->first();
+
+        $admin->name = $data['name'];
+        $admin->nick = $data['nick'];
+        $admin->password = $data['password'];
+        $admin->img = $data['img'];
+
+        if ($admin->update()) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $admin,
             ];
             return response()->json($object);
         }else{
