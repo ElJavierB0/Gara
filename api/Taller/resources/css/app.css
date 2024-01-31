@@ -3,12 +3,190 @@
 } */
 
 .custom-image {         
-    width: 100px;   /* Establece el ancho deseado */         
+    width: 100px;   /* Establece el ancho deseado */       
     height: 250px;  /* Ajusta automáticamente la altura según el ancho */  
     /* margin: 0px;  Ajusta el valor para el espacio entre imágenes */
 }
-.image{         
-    width: 40px;   /* Establece el ancho deseado */         
-    height: 80px;  /* Ajusta automáticamente la altura según el ancho */  
+.images{         
+    width: 80px;   /* Establece el ancho deseado */        
+    height: 40px;  /* Ajusta automáticamente la altura según el ancho */  
     /* margin: 0px;  Ajusta el valor para el espacio entre imágenes */
+}
+
+body {
+    background-color: #f8f9fa;
+}
+.jumbotron {
+    background-color: #212529;
+    color: #ECB347;
+    padding: 2rem;
+    margin-bottom: 0;
+}
+.feature {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.custom-image {
+    width: 500px; /* Establece el ancho deseado */
+    height: 350px; /* Ajusta automáticamente la altura según el ancho */
+}
+.carousel-inner {
+    display: flex;
+}
+.image-container {
+    position: relative;
+    width: 50%; /* Ajusta el ancho del contenedor según sea necesario */
+}
+.image-container img {
+    width: 100%; /* La imagen ocupa el 100% del ancho del contenedor */
+    max-width: 150%; /* La imagen puede crecer hasta un máximo del 150% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción original de la imagen */
+}
+.text-container {
+width: 50%;
+background-color: #ECB347;
+padding: 20px;
+color: #212529;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.text-container h5,
+.text-container p {
+    color: #212529; /* Color del texto */
+}
+.section-container {
+    border-radius: 8px;
+    border: 6px solid #ecb347; /* Agrega un borde a las secciones */
+    padding: 20px; /* Ajusta el relleno según sea necesario */
+    margin-bottom: 20px; /* Espacio entre las secciones */
+    margin-top: 20px; /* Espacio entre las secciones */
+    width: 98%; /* Abarca todo el ancho */
+} 
+.section-container2 {
+    border-radius: 8px;
+    border: 6px solid #212529; /* Agrega un borde a las secciones */
+    padding: 20px; /* Ajusta el relleno según sea necesario */
+    margin-top: 20px; /* Espacio entre las secciones */
+    width: 98%; /* Abarca todo el ancho */
+} 
+.image-container2 {
+
+    float: right; /* Coloca la imagen a la derecha */
+    margin-left: 20px; /* Espacio entre la imagen y el texto */
+    max-width: 50%; /* Ajusta según sea necesario */
+}
+.text-container2 {
+    width: 50%; /* Ajusta según sea necesario */
+    background-color: #212529;
+    padding: 20px;
+    color: #ECB347;
+    position: absolute;
+    top: 0;
+    left: 0; /* Cambia de right a left para alinear a la izquierda */
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden; /* Soluciona problemas de overflow */
+}
+.text-container3 {
+    width: 50%; /* Ajusta según sea necesario */
+    background-color: #ECB347;
+    padding: 20px;
+    color: #212529;
+    position: absolute;
+    top: 0;
+    left: 0; /* Cambia de right a left para alinear a la izquierda */
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden; /* Soluciona problemas de overflow */
+}
+html, body {
+    height: 70%; /* Establece la altura del cuerpo y el HTML al 100% */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+/* Estilo del contenedor principal */
+.main-container {
+    display: flex;
+    height: 100%; /* Ajusta la altura del contenedor principal al 100% */
+}
+/* Estilo de la mitad izquierda del contenedor */
+.left-half {
+    width: 33.33%;
+    height: 100%;
+    background-color: #ecb347;
+    padding: 20px;
+    text-align: center;
+    border: 6px solid #212529;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Estilos de la imagen en la sección de contacto */
+.contact-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+/* Estilo de la mitad derecha del contenedor */
+.center-half {
+    width: 33.33%;
+    height: 100%;
+    background-color: #ecb347;
+    padding: 20px;
+    border: 6px solid #212529;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Estilos del contenedor del formulario de contacto */
+.contact-form {
+    text-align: left;
+    width: 80%;
+    margin: auto;
+}
+/* Estilos del botón */
+.button {
+    text-align: center;
+    margin-top: 20px;
+}
+/* Estilos de los campos del formulario */
+.contact-form input {
+    width: 100%;
+    margin-bottom: 15px;
+}
+/* Estilo de la mitad derecha del contenedor */
+.right-half {
+    width: 33.33%;
+    height: 100%;
+    background-color: #ecb347;
+    padding: 20px;
+    border: 6px solid #212529;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Estilos del botón de descarga */
+.download-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilos de los campos del formulario */
+.contact-form input {
+    width: 100%;
+    margin-bottom: 15px;
 }
