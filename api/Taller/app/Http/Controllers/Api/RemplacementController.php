@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Remplacement;
 use Illuminate\Http\Request;
 
-class RemplacementsController extends Controller
+class RemplacementController extends Controller
 {
     public function list() {
         $remplacements =  Remplacement::all();

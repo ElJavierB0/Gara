@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    <a class="nav-link active" aria-current="page" href="panel.balde.php">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
@@ -35,15 +35,21 @@
                     <li><a class="dropdown-item" href="#servicios">Servicios</a></li>
                     <li><a class="dropdown-item" href="#reparaciones">Reparaciones</a></li>
                     <li><a class="dropdown-item" href="#modificaciones">Modificaciones</a></li>
-                    {{-- <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Contacto</a></li> --}}
                 </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#contacto">Contacto</a>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Sesiones
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{route('admin')}}">Administradores</a></li>
+                <li><a class="dropdown-item" href="#reparaciones">Empleados</a></li>
+                <li><a class="dropdown-item" href="#modificaciones">Usuarios</a></li>
+            </ul>
                 </ul>
             </div>
         </div>
