@@ -161,7 +161,7 @@
             <p><strong>Lugar:</strong> Avenida Automotriz #123, Distrito de Mantenimiento</p>
             <p><strong>Horario:</strong> Lunes a Viernes: 8:00 AM - 6:00 PM, Sábados: 9:00 AM - 1:00 PM</p>
             <p><strong>Teléfono:</strong> (555) 123-4567</p>
-            <p><strong>Correo:</strong> info@garataller.com</p>
+            <p><strong>Correo:</strong> info_gara@gmail.com</p>
         </div>
         <!-- Mitad derecha con formulario de contacto -->
         <div class="center-half">
