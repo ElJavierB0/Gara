@@ -170,7 +170,7 @@
         <!-- Sección 2 -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="image-container2">
+                <div class="image-container3">
                     <img src="{{ asset('image/Taller.jpeg') }}" class="d-block w-100" alt="Imagen 1">
                 </div>
                 <div class="text-container3">

@@ -94,6 +94,12 @@ justify-content: center;
     justify-content: center;
     overflow: hidden; /* Soluciona problemas de overflow */
 }
+.image-container3 {
+  width: 100%;
+  float: left; /* Coloca la imagen a la derecha */
+  margin-left: 20px; /* Espacio entre la imagen y el texto */
+  max-width: 50%; /* Ajusta según sea necesario */
+}
 .text-container3 {
     width: 50%; /* Ajusta según sea necesario */
     background-color: #ECB347;
@@ -101,7 +107,7 @@ justify-content: center;
     color: #212529;
     position: absolute;
     top: 0;
-    left: 0; /* Cambia de right a left para alinear a la izquierda */
+    right: 0; /* Cambia de right a left para alinear a la izquierda */
     bottom: 0;
     display: flex;
     flex-direction: column;
