@@ -43,12 +43,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
                 data-bs-toggle="dropdown" aria-expanded="false">
-                Sesiones
+                Account
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{{route('admin')}}">Administradores</a></li>
-                <li><a class="dropdown-item" href="#reparaciones">Empleados</a></li>
-                <li><a class="dropdown-item" href="#modificaciones">Usuarios</a></li>
+                <li><a class="dropdown-item" href="{{route('admin')}}">Login</a></li>
+                <li><a class="dropdown-item" href="{{route('admin')}}">Registro</a></li>
             </ul>
                 </ul>
             </div>

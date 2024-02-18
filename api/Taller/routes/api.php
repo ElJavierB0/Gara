@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CarController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\BrandController;
+use App\Http\Controllers\Api\CarController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RecordController;
-use App\Http\Controllers\RemplacementController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\RecordController;
+use App\Http\Controllers\Api\RemplacementController;
+use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

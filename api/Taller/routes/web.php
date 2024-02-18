@@ -16,6 +16,7 @@ Route::get('/old', function () {
     return view('welcome');
 });
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/admin', [PanelController::class, 'index'])->name('admin');
 Route::get('/admin.admi', [AdminController::class, 'index'])->name('admi');
