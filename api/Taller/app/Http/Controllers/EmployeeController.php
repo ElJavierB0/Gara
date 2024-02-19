@@ -10,3 +10,7 @@ class EmployeeController extends Controller
         return view('admin.employee.index'); 
     }
 }
+
+// public function index(){
+//     return view('home'); 
+// }

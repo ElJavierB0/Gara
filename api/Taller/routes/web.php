@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CategoryController;
@@ -27,3 +28,7 @@ Route::get('/admin.service', [ServiceController::class, 'index'])->name('service
 Route::get('/admin.category', [CategoryController::class, 'index'])->name('category');
 Route::get('/admin.record', [RecordController::class, 'index'])->name('record');
 Route::get('/admin.remplacement', [RemplacementController::class, 'index'])->name('remplacement');
+
+
+Auth::routes();
+
