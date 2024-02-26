@@ -31,18 +31,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('home') }}#contacto">Contactanos</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="">Accout</a>
-            </li>
-            {{-- <li class="nav-item dropdown">
+            </li> --}}
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Account
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{{route('admin')}}">Login</a></li>
-                <li><a class="dropdown-item" href="{{route('admin')}}">Registro</a></li>
-            </ul> --}}
+                <li><a class="dropdown-item" href="">Login</a></li>
+                <li><a class="dropdown-item" href="{{route('register')}}">Registro</a></li>
+            </ul>
                 </ul>
             </div>
         </div>
@@ -85,7 +85,7 @@
             </div>
         </div>
         </section>
-        <script
+        {{-- <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
             crossorigin="anonymous"
@@ -95,7 +95,7 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
-        ></script>
+        ></script> --}}
     </body>
 </html>
 @endsection

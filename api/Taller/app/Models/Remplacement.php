@@ -9,5 +9,5 @@ class Remplacement extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type'];
+    protected $fillable = ['name', 'type', 'description', 'price', 'img'];
 }

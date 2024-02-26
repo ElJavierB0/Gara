@@ -30,18 +30,18 @@
         <li class="nav-item">
             <a class="nav-link" href="#contacto">Contactanos</a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('login') }}">Account</a>
-        </li>
-        {{-- <li class="nav-item dropdown">
+        </li> --}}
+        <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
             data-bs-toggle="dropdown" aria-expanded="false">
             Account
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{route('admin')}}">Login</a></li>
-            <li><a class="dropdown-item" href="{{route('admin')}}">Registro</a></li>
-        </ul> --}}
+            <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
+            <li><a class="dropdown-item" href="{{route('register')}}">Registro</a></li>
+        </ul>
             </ul>
         </div>
     </div>
@@ -260,4 +260,4 @@
         Cualquier uso no autorizado constituye una violación de los derechos de autor y estará sujeto a las acciones 
         legales correspondientes.Todos los derechos reservados.</p>
 </footer>
-@endsection --
+@endsection 

@@ -14,8 +14,11 @@ class RemplacementController extends Controller
         foreach($remplacements as $remplacement) {
             $object = [
                 "id" => $remplacement->id,
-                "Nombre" => $remplacement->name,
-                "Tipo" => $remplacement->type,
+                "name" => $remplacement->name,
+                "type" => $remplacement->type,
+                "description" => $remplacement->description,
+                "price" => $remplacement->price,
+                "img" => $remplacement->img,
                 "created" => $remplacement->created_at,
                 "updated" => $remplacement->updated_at
             ];
@@ -28,8 +31,11 @@ class RemplacementController extends Controller
         $remplacements =  Remplacement::where('id', '=', $id)->first();
         $object = [
             "id" => $remplacements->id,
-            "Nombre" => $remplacements->name,
-            "Tipo" => $remplacements->type,
+            "name" => $remplacements->name,
+            "type" => $remplacements->type,
+            "description" => $remplacements->description,
+            "price" => $remplacements->price,
+            "img" => $remplacements->img,
             "created" => $remplacements->created_at,
             "updated" => $remplacements->updated_at
         ];
@@ -40,10 +46,16 @@ class RemplacementController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'type' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|int',
+            'img' => 'required|string',
         ]);
         $remplacements = Remplacement::create([
             'name'=>$data['name'],
             'type'=>$data['type'],
+            'description'=>$data['description'],
+            'price'=>$data['price'],
+            'img'=>$data['img'],
         ]);
         if ($remplacements) {
             $object = [
@@ -64,12 +76,18 @@ class RemplacementController extends Controller
             'id' => 'required|int',
             'name' => 'string',
             'type' => 'string',
+            'description' => 'string',
+            'price' => 'int',
+            'img' => 'string',
         ]);
 
         $remplacements =  Remplacement::where('id', '=', $data['id'])->first();
 
         $remplacements->name = $data['name'];
         $remplacements->type = $data['type'];
+        $remplacements->type = $data['description'];
+        $remplacements->type = $data['price'];
+        $remplacements->type = $data['img'];
 
         if ($remplacements->update()) {
             $object = [

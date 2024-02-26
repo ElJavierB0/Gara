@@ -59,5 +59,5 @@ Route::get('/Admins/{id}', [AdminController::class, 'item']);
 
 Route::get('/Users', [UserController::class, 'list']);
 Route::get('/Users/{id}', [UserController::class, 'item']);
-// Route::post('/Users/create', [UserController::class, 'create']);
+Route::post('/Users/create', [UserController::class, 'create']);
 // Route::post('/Users/{id}/update', [UserController::class, 'update']);
