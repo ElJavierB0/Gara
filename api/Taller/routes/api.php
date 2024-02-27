@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\CarController;
 use App\Http\Controllers\Api\CategoryController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Api\RecordController;
 use App\Http\Controllers\Api\RemplacementController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\UserController;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -61,3 +63,5 @@ Route::get('/Users', [UserController::class, 'list']);
 Route::get('/Users/{id}', [UserController::class, 'item']);
 Route::post('/Users/create', [UserController::class, 'create']);
 // Route::post('/Users/{id}/update', [UserController::class, 'update']);
+
+Route::post('/Login', [AuthController::class, 'login']);

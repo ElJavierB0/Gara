@@ -66,7 +66,7 @@
                     </div>
         
                     <div class="pt-1 mb-4">
-                    <a class="btn btn-info btn-lg btn-block" href="{{ route('admin') }}">Login</a>
+                    <a class="btn btn-info btn-lg btn-block" href="">Login</a>
 
                     </div>
         
