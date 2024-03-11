@@ -83,6 +83,7 @@ class UserController extends Controller
             ];
             return response()->json($object);
         }
+        
     }
 
     public function update( Request $request){

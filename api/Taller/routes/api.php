@@ -65,3 +65,4 @@ Route::post('/Users/create', [UserController::class, 'create']);
 // Route::post('/Users/{id}/update', [UserController::class, 'update']);
 
 Route::post('/Login', [AuthController::class, 'login']);
+Route::post('/Register', [AuthController::class, 'register']);

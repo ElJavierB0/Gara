@@ -17,6 +17,7 @@ class ServiceController extends Controller
                 "Nombre" => $service->name,
                 "Tipo" => $service->type,
                 "Disponibilidad" => $service->disponibility,
+                "Descripcion" => $service->desc,
                 "created" => $service->created_at,
                 "updated" => $service->updated_at
             ];
@@ -32,6 +33,7 @@ class ServiceController extends Controller
             "Nombre" => $services->name,
             "Tipo" => $services->type,
             "Disponibilidad" => $services->disponibility,
+            "Descripcion" => $services->desc,
             "created" => $services->created_at,
             "updated" => $services->updated_at
         ];
@@ -42,12 +44,14 @@ class ServiceController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'type' => 'required|string',
-            'disponibility' => 'required'
+            'disponibility' => 'required',
+            'desc' => 'required'
         ]);
         $services = Service::create([
             'name'=>$data['name'],
             'type'=>$data['type'],
-            'disponibility'=>$data['disponibility']
+            'disponibility'=>$data['disponibility'],
+            'desc'=>$data['desc']
         ]);
         if ($services) {
             $object = [
@@ -68,7 +72,8 @@ class ServiceController extends Controller
             'id' => 'required|int',
             'name' => 'string',
             'type' => 'string',
-            'disponibility' => 'string'
+            'disponibility' => 'string',
+            'desc' => 'string'
         ]);
 
         $services =  Service::where('id', '=', $data['id'])->first();
@@ -76,6 +81,7 @@ class ServiceController extends Controller
         $services->name = $data['name'];
         $services->type = $data['type'];
         $services->disponibility = $data['disponibility'];
+        $services->desc = $data['desc'];
 
         if ($services->update()) {
             $object = [
