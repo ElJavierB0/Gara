@@ -53,14 +53,15 @@ class UserController extends Controller
     }
 
     public function create(Request $request) {
+        dd($request->all());
         $data = $request->validate([
             'name' => 'required|string',
             'surname' => 'required|string',
             'email' => 'required','string',
             'phone' => 'required|string',
+            'password' => 'required|string',
             'status' => 'required|int',
             'level_id' => 'required|int',
-            'password' => 'required|string',
             'image' => 'required|string'
         ]);
         $users = User::create([
@@ -68,7 +69,9 @@ class UserController extends Controller
             'surname'=>$data['surname'],
             'email'=>$data['email'],
             'phone'=>$data['phone'],
-            'password'=>$data['password'],
+            'password' => bcrypt($data['password']),
+            'status'=>$data['status'],
+            'level_id'=>$data['password'],
             'image'=>$data['image']
         ]);
         if ($users) {
@@ -98,10 +101,13 @@ class UserController extends Controller
 
         $users =  User::where('id', '=', $data['id'])->first();
 
+        $users->name = $data['name'];
+        $users->surname = $data['surname'];
         $users->email = $data['email'];
         $users->phone = $data['phone'];
-        $users->image = $data['status'];
-        $users->image = $data['level_id'];
+        $users->password = bcrypt($data['password']);
+        $users->status = $data['status'];
+        $users->level_id = $data['level_id'];
         $users->image = $data['image'];
 
         if ($users->update()) {

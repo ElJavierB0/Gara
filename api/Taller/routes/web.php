@@ -10,6 +10,7 @@ use App\Http\Controllers\PanelController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\RemplacementController;
 use App\Http\Controllers\ServiceController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/old', function () {
@@ -30,4 +31,3 @@ Route::get('/admin.remplacement', [RemplacementController::class, 'index'])->nam
 
 
 Auth::routes();
-
