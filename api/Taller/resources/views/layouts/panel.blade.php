@@ -11,6 +11,8 @@
         
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+        
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -33,7 +35,16 @@
                         <li><a class="dropdown-item" href="#!">Configuración</a></li>
                         <li><a class="dropdown-item" href="#!">Actividad</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{{ route('home') }}">Cerrar Sesion</a></li>
+                        <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                        Cerrar Sesión
+                                    </a></li>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                     </ul>
                 </li>
             </ul>
@@ -46,7 +57,7 @@
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="{{ route('admin') }}">
                                 <div class="sb-nav-link-icon" ><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                Inicio
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -102,7 +113,11 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Manolo
+                        @auth
+                            {{ auth()->user()->name }}
+                        @else
+                            Invitado
+                        @endauth
                     </div>
                 </nav>
             </div>

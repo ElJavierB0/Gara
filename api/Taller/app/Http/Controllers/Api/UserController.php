@@ -19,9 +19,8 @@ class UserController extends Controller
                 "Email" => $user->email,
                 "Celular" => $user->phone,
                 "Verficación" => $user->email_verifed_at,
-                "Password" => $user->password,
                 "Status" => $user->status,
-                "Nivel" => $user->level_id,
+                "Nivel" => $user->level,
                 "Imagen" => $user->image,
                 "Remember" => $user->remember_token,
                 "created" => $user->created_at,
@@ -71,7 +70,7 @@ class UserController extends Controller
             'phone'=>$data['phone'],
             'password' => bcrypt($data['password']),
             'status'=>$data['status'],
-            'level_id'=>$data['password'],
+            'level_id'=>$data['level'],
             'image'=>$data['image']
         ]);
         if ($users) {

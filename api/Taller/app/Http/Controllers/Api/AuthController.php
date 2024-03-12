@@ -5,44 +5,49 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\UserController;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login(Request $request) {
-
-        $loginData= $request->validate([
+    public function login(Request $request)
+    {
+        $loginData = $request->validate([
             'email' => 'email|required',
-            'password' => 'required'
+            'password' => 'required',
         ]);
-        
-        if(!auth()->attempt($loginData)) {
+
+        $user = \App\Models\User::where('email', $loginData['email'])->first();
+
+        // Verificar si el usuario tiene level_id 2 o 3
+        if (!$user || $user->level_id !== 2 && $user->level_id !== 3) {
             return response([
-                'message'=>'Invalid Credentials',
-                'message'=>'Error'
+                'message' => 'Invalid Credentials',
+                'error' => 'Error',
             ]);
         }
 
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        if (!Hash::check($loginData['password'], $user->password)) {
+            return response([
+                'message' => 'Invalid Credentials',
+                'error' => 'Error',
+            ]);
+        }
+
+        $accessToken = $user->createToken('authToken')->accessToken;
         return response([
-            'profile'=>auth()->user(),
-            'access_token'=>$accessToken,
-            'message'=> 'success'
+            'profile' => $user,
+            'access_token' => $accessToken,
+            'message' => 'success',
         ]);
     }
-
-    // public function logout() {
-    //     auth()->user()->tokens()->delete();
-
-    //     return response(['message'=>'User Logged Out']);
-    // }
 
     public function register(Request $request) {
         $registerData = $request->validate([
             'name' => 'required|string',
             'surname' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8',
             'phone' => 'required|string|max:10',
+            'password' => 'required|string|min:8',
         ]);
 
         $userController = new UserController();
@@ -57,5 +62,4 @@ class AuthController extends Controller
             'message' => 'success',
         ]);
     }
-
 }

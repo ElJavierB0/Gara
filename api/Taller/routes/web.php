@@ -10,6 +10,7 @@ use App\Http\Controllers\PanelController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\RemplacementController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,6 @@ Route::get('/admin.remplacement', [RemplacementController::class, 'index'])->nam
 
 
 Auth::routes();
+
+// Route::post('/login', [AuthController::class, 'login'])->name('login');
+// Route::post('/register', [AuthController::class, 'register'])->name('register');
