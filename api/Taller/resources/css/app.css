@@ -6,6 +6,9 @@ a {
   text-decoration: none; /* Elimina el subrayado predeterminado */
   transition: background-color 0.3s; /* Agrega transición al cambio de color de fondo */
 }
+main{
+  background-color: #f8f9fa;
+}
 
 /* Cambia el color de fondo al pasar el ratón sobre el enlace */
 .as:hover {
@@ -872,8 +875,8 @@ progress {
 }
 
 .img-fluid {
-  max-width: 100%;
-  height: auto;
+  width: 500px;
+  height: 240px;
 }
 
 .img-thumbnail {
@@ -4090,7 +4093,7 @@ textarea.form-control-lg {
   --bs-nav-link-padding-y: 0.5rem;
   --bs-nav-link-font-weight: ;
   --bs-nav-link-color: var(--bs-navbar-color);
-  --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
+  --bs-nav-link-hover-color: #fff;
   --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
   display: flex;
   flex-direction: column;
@@ -7915,6 +7918,7 @@ textarea.form-control-lg {
 
 .mt-4 {
   margin-top: 1.5rem !important;
+  color: #212529;
 }
 
 .mt-5 {
@@ -11317,7 +11321,7 @@ body {
   color: #ECB347;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link {
-  color: #ECB999;
+  color: #ECB347;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
   color: rgba(255, 255, 255, 0.25);
@@ -11546,3 +11550,76 @@ body {
   height: 100%;
   }
   }
+
+  .ulpgcds-pager {
+    background-color: #fff; /* Color de fondo de la paginación */
+    color: #212529; /* Color del texto de la paginación */
+    text-align: center; /* Alineación del texto en el centro */
+    padding: 10px 0; /* Espaciado interno superior e inferior */
+}
+
+.ulpgcds-pager .pagination {
+    margin: 0; /* Elimina el margen predeterminado de la paginación */
+}
+
+.ulpgcds-pager .pagination .page-item .page-link {
+    background-color: transparent; /* Fondo transparente para los enlaces de página */
+    border-color: transparent; /* Borde transparente para los enlaces de página */
+    color: #212529; /* Color del texto de los enlaces de página */
+    padding: 5px 10px; /* Espaciado interno de los enlaces de página */
+    margin: 0 2px; /* Margen entre los enlaces de página */
+}
+
+.ulpgcds-pager .pagination .page-item .page-link:hover,
+.ulpgcds-pager .pagination .page-item.active .page-link {
+    background-color: #ECB347; /* Color de fondo cuando el enlace de página está activo o en hover */
+    border-color: #fff; /* Borde cuando el enlace de página está activo o en hover */
+    color: #212529; /* Color del texto cuando el enlace de página está activo o en hover */
+}
+
+.ulpgcds-pager .pagination .page-item.disabled .page-link {
+    pointer-events: none; /* Deshabilita el clic en los enlaces de página deshabilitados */
+    color: #6c757d; /* Color del texto para los enlaces de página deshabilitados */
+}
+
+/* Estilos para las secciones */
+.section-container {
+  /* Fondo oscuro */
+  background-color: #212529;
+  /* Texto claro */
+  color: #ECB347;
+}
+
+/* Estilos para la lista */
+.scrollable-list {
+  /* Altura máxima de la lista */
+  max-height: 200px;
+  /* Desplazamiento vertical */
+  overflow-y: auto;
+  /* Fondo transparente */
+  background-color: transparent;
+  /* Oculta la barra de desplazamiento */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer y Edge */
+}
+
+
+/* Estilos para los elementos de la lista */
+.list-group-item {
+  /* Fondo transparente */
+  background-color: transparent !important;
+  /* Borde transparente */
+  border: none !important;
+  /* Texto claro */
+  color: #ECB347 !important;
+}
+
+.scrollable-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Estilos para el texto dentro de la lista en la sección de Reparaciones */
+#reparaciones .list-group-item {
+  /* Color de texto */
+  color: #212529 !important;
+}

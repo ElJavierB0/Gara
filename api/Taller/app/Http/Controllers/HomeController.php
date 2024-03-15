@@ -3,44 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Service;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('home');
-    // }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+        // Obtener servicios de cada tipo
+        $servicios = Service::where('type', 'servicio')->get();
+        $reparaciones = Service::where('type', 'reparacion')->get();
+        $modificaciones = Service::where('type', 'modificacion')->get();
+
+        return view('home', compact('servicios', 'reparaciones', 'modificaciones'));
     }
 }
-
-
-// <?php
-
-// namespace App\Http\Controllers;
-
-// use Illuminate\Http\Request;
-
-// class HomeController extends Controller
-// {
-//     public function index(){
-//         return view('home'); 
-//     }
-// }
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -17,7 +17,7 @@ class CarController extends Controller
                 "Nombre" => $car->name,
                 "Estado" => $car->status,
                 "Imagen" => $car->img,
-                "Marca" => $car->brand_id,
+                "Marca" => $car->brand,
                 "created" => $car->created_at,
                 "updated" => $car->updated_at
             ];
@@ -33,7 +33,7 @@ class CarController extends Controller
             "Nombre" => $cars->name,
             "Estado" => $cars->status,
             "Imagen" => $cars->img,
-            "Marca" => $cars->brand_id,
+            "Marca" => $cars->brand,
             "created" => $cars->created_at,
             "updated" => $cars->updated_at
         ];
@@ -45,13 +45,13 @@ class CarController extends Controller
             'name' => 'required|string',
             'status' => 'required|string',
             'img' => 'required|string',
-            'brand_id' => 'required|int',
+            'brand' => 'required|int',
         ]);
         $cars = Car::create([
             'name'=>$data['name'],
             'status'=>$data['status'],
             'img'=>$data['img'],
-            'brand_id'=>$data['brand_id']
+            'brand'=>$data['brand']
         ]);
         if ($cars) {
             $object = [
@@ -73,7 +73,7 @@ class CarController extends Controller
             'name' => 'string',
             'status' => 'string',
             'img' => 'string',
-            'brand_id' => 'required|int',
+            'brand' => 'required|int',
         ]);
 
         $cars =  Car::where('id', '=', $data['id'])->first();
@@ -81,7 +81,7 @@ class CarController extends Controller
         $cars->name = $data['name'];
         $cars->status = $data['status'];
         $cars->img = $data['img'];
-        $cars->brand_id = $data['brand_id'];
+        $cars->brand = $data['brand'];
 
         if ($cars->update()) {
             $object = [

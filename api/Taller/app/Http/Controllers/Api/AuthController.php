@@ -19,12 +19,13 @@ class AuthController extends Controller
         $user = \App\Models\User::where('email', $loginData['email'])->first();
 
         // Verificar si el usuario tiene level_id 2 o 3
-        if (!$user || $user->level_id !== 2 && $user->level_id !== 3) {
-            return response([
-                'message' => 'Invalid Credentials',
-                'error' => 'Error',
-            ]);
-        }
+        // if (!$user || !in_array($user->level, [2, 3])) {
+        //     return response([
+        //         'message' => 'Invalid Credentials',
+        //         'error' => 'Error',
+        //     ]);
+        // }
+        
 
         if (!Hash::check($loginData['password'], $user->password)) {
             return response([

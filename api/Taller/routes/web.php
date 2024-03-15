@@ -21,14 +21,19 @@ Route::get('/old', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/admin', [PanelController::class, 'index'])->name('admin');
-Route::get('/admin.admi', [AdminController::class, 'index'])->name('admi');
-Route::get('/admin.employee', [EmployeeController::class, 'index'])->name('employee');
-Route::get('/admin.brand', [BrandController::class, 'index'])->name('brand');
-Route::get('/admin.car', [CarController::class, 'index'])->name('car');
-Route::get('/admin.service', [ServiceController::class, 'index'])->name('service');
-Route::get('/admin.category', [CategoryController::class, 'index'])->name('category');
-Route::get('/admin.record', [RecordController::class, 'index'])->name('record');
-Route::get('/admin.remplacement', [RemplacementController::class, 'index'])->name('remplacement');
+Route::get('/admi', [PanelController::class, 'config'])->name('admi');
+Route::get('/admin/personal', [AdminController::class, 'index'])->name('personal');
+Route::get('/admin/employee', [EmployeeController::class, 'index'])->name('employee');
+Route::get('/admin/brand', [BrandController::class, 'index'])->name('brand');
+Route::get('/admin/car', [CarController::class, 'index'])->name('car');
+Route::get('/admin/service', [ServiceController::class, 'index'])->name('service');
+Route::get('/admin/category', [CategoryController::class, 'index'])->name('category');
+Route::get('/admin/record', [RecordController::class, 'index'])->name('record');
+Route::get('/admin/remplacement', [RemplacementController::class, 'index'])->name('remplacement');
+
+
+Route::get('/admin/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand/edit');
+Route::put('/admin/brand/update/{id}', [BrandController::class, 'update'])->name('brand/update');;
 
 
 Auth::routes();

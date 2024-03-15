@@ -40,9 +40,8 @@ class UserController extends Controller
             "Email" => $users->email,
             "Celular" => $users->phone,
             "Verficación" => $users->email_verifed_at,
-            "Password" => $users->password,
             "Status" => $users->status,
-            "Nivel" => $users->level_id,
+            "Nivel" => $users->level,
             "Imagen" => $users->image,
             "Remember" => $users->remember_token,
             "created" => $users->created_at,
@@ -58,9 +57,8 @@ class UserController extends Controller
             'surname' => 'required|string',
             'email' => 'required','string',
             'phone' => 'required|string',
-            'password' => 'required|string',
             'status' => 'required|int',
-            'level_id' => 'required|int',
+            'level' => 'required|int',
             'image' => 'required|string'
         ]);
         $users = User::create([
@@ -68,9 +66,8 @@ class UserController extends Controller
             'surname'=>$data['surname'],
             'email'=>$data['email'],
             'phone'=>$data['phone'],
-            'password' => bcrypt($data['password']),
             'status'=>$data['status'],
-            'level_id'=>$data['level'],
+            'level'=>$data['level'],
             'image'=>$data['image']
         ]);
         if ($users) {
@@ -94,7 +91,7 @@ class UserController extends Controller
             'email' => 'required|string',
             'phone' => 'required|string',
             'status' => 'required|int',
-            'level_id' => 'required|int',
+            'level' => 'required|int',
             'image' => 'required|string',
         ]);
 
@@ -104,7 +101,6 @@ class UserController extends Controller
         $users->surname = $data['surname'];
         $users->email = $data['email'];
         $users->phone = $data['phone'];
-        $users->password = bcrypt($data['password']);
         $users->status = $data['status'];
         $users->level_id = $data['level_id'];
         $users->image = $data['image'];

@@ -15,9 +15,9 @@ class RecordController extends Controller
             $object = [
                 "id" => $record->id,
                 "Fecha" => $record->date,
-                "Servicio" => $record->service_id,
-                "Empleado" => $record->employee_id,
-                "Refacción" => $record->remplacement_id,
+                "Servicio" => $record->service,
+                "Empleado" => $record->employee,
+                "Refacción" => $record->remplacement,
                 "created" => $record->created_at,
                 "updated" => $record->updated_at
             ];
@@ -31,69 +31,69 @@ class RecordController extends Controller
         $object = [
             "id" => $record->id,
             "Fecha" => $record->date,
-            "Servicio" => $record->service_id,
-            "Empleado" => $record->employee_id,
-            "Refacción" => $record->remplacement_id,
+            "Servicio" => $record->service,
+            "Empleado" => $record->employee,
+            "Refacción" => $record->remplacement,
             "created" => $record->created_at,
             "updated" => $record->updated_at
         ];
         return response()->json($object);
     }
 
-    // public function create(Request $request) {
-    //     $data = $request->validate([
-    //         'date' => 'required|string',
-    //         'service_id' => 'required|string',
-    //         'employee_id' => 'required|string',
-    //         'remplacement_id' => 'required|string',
-    //     ]);
-    //     $records = Record::create([
-    //         'name'=>$data['name'],
-    //         'service_id'=>$data['service_id'],
-    //         'employee_id'=>$data['employee_id']
-    //         'remplacement_id'=>$data['remplacement_id']
-    //     ]);
-    //     if ($records) {
-    //         $object = [
-    //             "response" => 'Success. Item saved correctly.',
-    //             "data" => $records,
-    //         ];
-    //         return response()->json($object);
-    //     }else{
-    //         $object = [
-    //             "response" => 'Error: Something went wrong, please try again.'
-    //         ];
-    //         return response()->json($object);
-    //     }
-    // }
+    public function create(Request $request) {
+        $data = $request->validate([
+            'date' => 'required|string',
+            'service' => 'required|string',
+            'employee' => 'required|string',
+            'remplacement' => 'required|string',
+        ]);
+        $records = Record::create([
+            'name'=>$data['name'],
+            'service'=>$data['service'],
+            'employee'=>$data['employee'],
+            'remplacement'=>$data['remplacement']
+        ]);
+        if ($records) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $records,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
 
-    // public function update( Request $request){
-    //     $data = $request->validate([
-    //         'id' => 'required|int',
-    //         'date' => 'string',
-    //         'service_id' => 'required|string',
-    //         'employee_id' => 'required|string',
-    //         'remplacement_id' => 'required|string',
-    //     ]);
+    public function update( Request $request){
+        $data = $request->validate([
+            'id' => 'required|int',
+            'date' => 'string',
+            'service' => 'required|string',
+            'employee' => 'required|string',
+            'remplacement' => 'required|string',
+        ]);
 
-    //     $records =  Record::where('id', '=', $data['id'])->first();
+        $records =  Record::where('id', '=', $data['id'])->first();
 
-    //     $records->date = $data['date'];
-    //     $records->service_id = $data['service_id'];
-    //     $records->employee_id = $data['employee_id'];
-    //     $records->remplacement_id = $data['remplacement_id'];
+        $records->date = $data['date'];
+        $records->service = $data['service'];
+        $records->employee = $data['employee'];
+        $records->remplacement = $data['remplacement'];
 
-    //     if ($records->update()) {
-    //         $object = [
-    //             "response" => 'Success. Item saved correctly.',
-    //             "data" => $records,
-    //         ];
-    //         return response()->json($object);
-    //     }else{
-    //         $object = [
-    //             "response" => 'Error: Something went wrong, please try again.'
-    //         ];
-    //         return response()->json($object);
-    //     }
-    // }
+        if ($records->update()) {
+            $object = [
+                "response" => 'Success. Item saved correctly.',
+                "data" => $records,
+            ];
+            return response()->json($object);
+        }else{
+            $object = [
+                "response" => 'Error: Something went wrong, please try again.'
+            ];
+            return response()->json($object);
+        }
+    }
 }

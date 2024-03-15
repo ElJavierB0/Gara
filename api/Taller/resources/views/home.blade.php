@@ -30,9 +30,7 @@
         <li class="nav-item">
             <a class="nav-link" href="#contacto">Contactanos</a>
         </li>
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">Account</a>
-        </li> --}}
+
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -78,11 +76,12 @@
 </div>
 
 <!-- Encabezado con Jumbotron -->
-<header class="jumbotron text-center">
-    <h1 class="display-4">Bienvenido a Gara</h1>
-    <p class="lead">Tenemos lo que tu auto necesita</p>
-    <h6>SERVICIOS, REPARACIONES, MODIFICACIONES,</p>
+<header class="jumbotron text-center" style="font-family: 'Playfair Display', cursive;">
+    <h1 class="display-4">Gara Customs</h1>
+    {{-- <p class="lead">Tenemos lo que tu auto necesita</p>
+    <h6>SERVICIOS, REPARACIONES, MODIFICACIONES,</p> --}}
 </header>
+
 
 <!-- Carrusel de Opciones -->
 <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel">
@@ -146,12 +145,13 @@
             </div>
             <div class="text-container2">
                 <h5>Servicios</h5>
-                <p>• Cambio de aceite y filtro.</p>
-                <p>• Inspección y reemplazo de bujías.</p>
-                <p>• Alineación de ruedas.</p>
-                <p>• Rotación de neumáticos.</p>
-                <p>• Cambio de líquidos (frenos, transmisión, refrigerante).</p>
-                <p>• Inspección y reemplazo de correas y mangueras.</p>
+                <div class="scrollable-list">
+                    <ul class="list-group">
+                        @foreach($servicios as $servicio)
+                        <li class="list-group-item">{{ $servicio->name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -165,11 +165,13 @@
             </div>
             <div class="text-container3">
                 <h5>Reparaciones</h5>
-                <p>• Diagnóstico y reparación de problemas de motor.</p>
-                <p>• Reparación de sistemas de frenos y suspensión.</p>          
-                <p>• Servicios de transmisión y embrague.</p>           
-                <p>• Reparación y recarga del sistema de aire acondicionado.</p>
-                <p>• Solución de problemas eléctricos y reparación de sistemas de iluminación.</p>
+                <div class="scrollable-list">
+                    <ul class="list-group">
+                        @foreach($reparaciones as $reparacion)
+                        <li class="list-group-item">{{ $reparacion->name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -183,12 +185,13 @@
             </div>
             <div class="text-container2">
                 <h5>Modificaciones</h5>
-                <p>• Instalación de sistemas de escape personalizados.</p>
-                <p>• Mejoras en la admisión de aire.</p>          
-                <p>• Modificaciones de suspensión para un manejo mejorado.</p>           
-                <p>• Instalación de sistemas de sonido y entretenimiento.</p>
-                <p>• Personalización de llantas y neumáticos.</p>
-                <p>• Actualizaciones de rendimiento del motor.</p>
+                <div class="scrollable-list">
+                    <ul class="list-group">
+                        @foreach($modificaciones as $modificacion)
+                        <li class="list-group-item">{{ $modificacion->name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -203,7 +206,7 @@
         </div>
         <h2>Información de Contacto</h2>
         <p><strong>Lugar:</strong> Avenida Automotriz #123, Distrito de Mantenimiento</p>
-        <p><strong>Horario:</strong> Lunes a Viernes: 8:00 AM - 6:00 PM, Sábados: 9:00 AM - 1:00 PM</p>
+        <p><strong>Horario:</strong> Lunes a Viernes: 8:00 AM - 6:00 PM <br> Sábados: 9:00 AM - 1:00 PM</p>
         <p><strong>Teléfono:</strong> (555) 123-4567</p>
         <p><strong>Correo:</strong> info_gara@gmail.com</p>
     </div>

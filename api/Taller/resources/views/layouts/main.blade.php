@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Estilos personalizados -->
 </head>
-<body>
+<body style="background-color: #f8f9fa">
     @yield('menu')
 
 	@yield("content")

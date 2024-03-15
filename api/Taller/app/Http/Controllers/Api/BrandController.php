@@ -16,7 +16,7 @@ class BrandController extends Controller
                 "id" => $brand->id,
                 "Nombre" => $brand->name,
                 "Logo" => $brand->logo,
-                "Categoria" => $brand->category_id,
+                "Categoria" => $brand->category,
                 "created" => $brand->created_at,
                 "updated" => $brand->updated_at
             ];
@@ -31,7 +31,7 @@ class BrandController extends Controller
             "id" => $brands->id,
             "Nombre" => $brands->name,
             "Logo" => $brands->logo,
-            "Categoria" => $brands->category_id,
+            "Categoria" => $brands->category,
             "created" => $brands->created_at,
             "updated" => $brands->updated_at
         ];
@@ -41,11 +41,11 @@ class BrandController extends Controller
     public function create(Request $request) {
         $data = $request->validate([
             'name' => 'required|string',
-            'category_id' => 'required|int',
+            'category' => 'required|int',
         ]);
         $brands = Brand::create([
             'name'=>$data['name'],
-            'category_id'=>$data['category_id'],
+            'category'=>$data['category'],
         ]);
         if ($brands) {
             $object = [

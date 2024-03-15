@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Validator;
 class CarController extends Controller
 {
     public function index(){
-        return view('admin.car.index'); 
+        $cars = Car::paginate(10); // Cambia 10 por el número de registros que deseas mostrar por página
+        return view('admin.car.index', compact('cars')); 
     }
 
     public function store(Request $request)

@@ -46,23 +46,23 @@ Route::post('/Cars/{id}/update', [CarController::class, 'update']);
 
 Route::get('/Records', [RecordController::class, 'list']);
 Route::get('/Records/{id}', [RecordController::class, 'item']);
-// Route::post('/Records/create', [RecordController::class, 'create']);
-// Route::post('/Records/{id}/update', [RecordController::class, 'update']);
+Route::post('/Records/create', [RecordController::class, 'create']);
+Route::post('/Records/{id}/update', [RecordController::class, 'update']);
 
 Route::get('/Employees', [EmployeeController::class, 'list']);
 Route::get('/Employees/{id}', [EmployeeController::class, 'item']);
-// Route::post('/Employees/create', [EmployeeController::class, 'create']);
-// Route::post('/Employees/{id}/update', [EmployeeController::class, 'update']);
+Route::post('/Employees/create', [EmployeeController::class, 'create']);
+Route::post('/Employees/{id}/update', [EmployeeController::class, 'update']);
 
 Route::get('/Admins', [AdminController::class, 'list']);
 Route::get('/Admins/{id}', [AdminController::class, 'item']);
-// Route::post('/Admins/create', [AdminController::class, 'create']);
-// Route::post('/Admins/{id}/update', [AdminController::class, 'update']);
+Route::post('/Admins/create', [AdminController::class, 'create']);
+Route::post('/Admins/{id}/update', [AdminController::class, 'update']);
 
 Route::get('/Users', [UserController::class, 'list']);
 Route::get('/Users/{id}', [UserController::class, 'item']);
 Route::post('/Users/create', [UserController::class, 'create']);
-// Route::post('/Users/{id}/update', [UserController::class, 'update']);
+Route::post('/Users/{id}/update', [UserController::class, 'update']);
 
 Route::post('/Login', [AuthController::class, 'login']);
 Route::post('/Register', [AuthController::class, 'register']);
