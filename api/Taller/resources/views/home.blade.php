@@ -76,12 +76,11 @@
 </div>
 
 <!-- Encabezado con Jumbotron -->
-<header class="jumbotron text-center" style="font-family: 'Le chant des Albatros', cursive;">
+<header class="jumbotron text-center" style="font-family: 'Playfair Display', cursive;">
     <h1 class="display-4">Gara Customs</h1>
     {{-- <p class="lead">Tenemos lo que tu auto necesita</p>
     <h6>SERVICIOS, REPARACIONES, MODIFICACIONES,</p> --}}
 </header>
-
 
 
 <!-- Carrusel de Opciones -->
