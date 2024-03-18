@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
 class BrandController extends Controller
 {
     public function index(){
-        $brands = Brand::paginate(8);
+        $brands = Brand::orderBy('id', 'asc')->paginate(8);
         $categories = Category::all(); 
         return view('admin.brand.index', compact('brands', 'categories')); 
     }

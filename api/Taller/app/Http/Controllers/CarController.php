@@ -11,7 +11,7 @@ class CarController extends Controller
 {
     public function index()
     {
-        $cars = Car::paginate(10);
+        $cars = Car::orderBy('id', 'asc')->paginate(10);
         $brands = Brand::all(); // Obtener todas las marcas disponibles
         return view('admin.car.index', compact('cars', 'brands'));
     }

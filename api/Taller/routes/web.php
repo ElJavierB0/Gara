@@ -50,6 +50,12 @@ Route::get('/admin/car/{car}/edit', [CarController::class, 'edit'])->name('car-e
 Route::put('/admin/car/{car}', [CarController::class, 'update'])->name('car-update');
 Route::delete('/admin/car/delete/{id}', [CarController::class, 'destroy'])->name('car-delete');
 
+Route::get('/admin/category/edit/{id}', [CategoryController::class, 'edit'])->name('category-edit');
+Route::put('/admin/category/update/{id}', [CategoryController::class, 'update'])->name('category-update');
+Route::post('/admin/category/store', [CategoryController::class, 'store'])->name('category-store');
+Route::delete('/admin/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category-delete');
+
+
 
 Auth::routes();
 
