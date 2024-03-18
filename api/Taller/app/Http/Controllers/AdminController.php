@@ -52,36 +52,45 @@ class AdminController extends Controller
             'surname' => 'string|max:255',
             'email' => 'string|email|max:255|unique:users,email,'.$request->id,
             'phone' => 'string|max:10',
-            'password' => 'string|max:255',
-            'image' => 'image', // Validación de imagen
+            'password' => 'string|min:8', // Se ha cambiado la validación para aceptar contraseñas de hasta 255 caracteres
+            'image' => 'string|max:255',
+            // Agrega aquí más validaciones según tus necesidades
         ]);
     
         $user = User::findOrFail($request->id);
     
-        $user->update([
+        $userData = [
             'name' => $request->name,
             'surname' => $request->surname,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-            // Verificar si se proporcionó un nuevo archivo de imagen
-            'image' => $request->hasFile('image') ? $this->uploadImage($request->image, $request->name) : $user->image,
+            'image' => $request->image,
             // Agrega aquí más campos según tus necesidades
-        ]);
+        ];
+    
+        // Verificar si se proporcionó una nueva contraseña
+        if ($request->password) {
+            // Si se proporcionó, incluir la contraseña en los datos del usuario
+            $userData['password'] = Hash::make($request->password);
+        }
+    
+        $user->update($userData);
     
         return redirect()->back()->with('success', '¡Usuario actualizado correctamente!');
     }
-    public function store(Request $request)
+    
+    
+        public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
             'phone' => 'required|string|max:10',
-            'password' => 'required|string|min:8',
-            'image' => 'image', // Validación de imagen
+            'password' => 'string|min:8',
+            'image' => 'image', // Eliminada la validación específica del tipo de imagen
         ]);
-    
+
         $user = new User();
         $user->name = $request->name;
         $user->surname = $request->surname;
@@ -90,24 +99,22 @@ class AdminController extends Controller
         $user->password = $request->password;
         $user->status = 1; // Establecer el estado predeterminado
         $user->level_id = 3; // Establecer el nivel predeterminado
-    
-        // Verificar si se proporcionó un archivo de imagen
-        if ($request->hasFile('image')) {
-            // Establecer el nombre de la imagen utilizando el nombre de usuario
-            $username = $request->name;
-            $imageName = $username . '.' . $request->image->extension();
-            
-            // Mover la imagen a la carpeta deseada
-            $request->image->move(public_path('image/Perfil'), $imageName);
-            
-            // Establecer la ruta de la imagen en la base de datos
-            $user->image = asset('image/Perfil/' . $imageName);
-        }
-    
+
+        // Guardar la imagen sin especificar un nombre específico
+        $username = $request->name;
+
+        // Establecer el nombre de la imagen utilizando el nombre de usuario
+        $imageName = $username . '.' . $request->image->extension();
+        
+        // Mover la imagen a la carpeta deseada
+        $request->image->move(public_path('image/Perfil'), $imageName);
+        
+        // Establecer la ruta de la imagen en la base de datos
+        $user->image = asset('image/Perfil/' . $imageName);
+        
         $user->save();
         return redirect()->back()->with('success', '¡Administrador añadido correctamente!');
     }
-    
 
     public function storeEmployee(Request $request)
     {
@@ -171,17 +178,5 @@ class AdminController extends Controller
     return redirect()->back()->with('error', 'No tienes permisos para eliminar este usuario.');
 }
 
-// Método para subir la imagen
-private function uploadImage($image, $username)
-{
-    // Establecer el nombre de la imagen utilizando el nombre de usuario
-    $imageName = $username . '.' . $image->extension();
-    
-    // Mover la imagen a la carpeta deseada
-    $image->move(public_path('image/Perfil'), $imageName);
-    
-    // Retornar la ruta de la imagen
-    return asset('image/Perfil/' . $imageName);
-}
 
 }

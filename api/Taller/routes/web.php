@@ -45,6 +45,11 @@ Route::put('/admin/brand/update/{id}', [BrandController::class, 'update'])->name
 Route::post('/admin/brand/store', [BrandController::class, 'store'])->name('brand-store'); 
 Route::delete('admin/brand/delete/{id}', [BrandController::class, 'delete'])->name('brand-delete');
 
+Route::post('/admin/car/store', [CarController::class, 'store'])->name('car-store');
+Route::get('/admin/car/{car}/edit', [CarController::class, 'edit'])->name('car-edit');
+Route::put('/admin/car/{car}', [CarController::class, 'update'])->name('car-update');
+Route::delete('/admin/car/delete/{id}', [CarController::class, 'destroy'])->name('car-delete');
+
 
 Auth::routes();
 

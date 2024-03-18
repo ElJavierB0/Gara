@@ -68,7 +68,7 @@
                     <div class="text-center mb-3">
                         <button type="submit" class="btn btn-primary mr-2">Guardar</button>
                         <button type="button" class="btn btn-secondary" onclick="closePopup()">Cerrar</button>
-                    </div>                    
+                    </div>
                 </form>
             </div>
         </div>

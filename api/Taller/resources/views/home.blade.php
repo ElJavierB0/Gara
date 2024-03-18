@@ -76,11 +76,12 @@
 </div>
 
 <!-- Encabezado con Jumbotron -->
-<header class="jumbotron text-center" style="font-family: 'Playfair Display', cursive;">
+<header class="jumbotron text-center" style="font-family: 'Le chant des Albatros', cursive;">
     <h1 class="display-4">Gara Customs</h1>
     {{-- <p class="lead">Tenemos lo que tu auto necesita</p>
     <h6>SERVICIOS, REPARACIONES, MODIFICACIONES,</p> --}}
 </header>
+
 
 
 <!-- Carrusel de Opciones -->
@@ -247,7 +248,7 @@
         <!-- Espacio para el logo de la App -->
         <a href="https://www.instagram.com/javie.ber?igsh=NzY5M3kwd2x2YW05&utm_source=qr">
             <div class="app-logo">
-                <img src="{{ asset('image/GTLO.png') }}" alt="Logo de la App" width="100" height="100">
+                <img src="{{ asset('image/Logo .png') }}" alt="Logo de la App" width="100" height="100">
             </div>
         </a>
     </div>

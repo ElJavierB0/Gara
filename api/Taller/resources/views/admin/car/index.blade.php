@@ -9,6 +9,14 @@
             <a href="{{ route('admin') }}" style="color: #212529; text-decoration: none; margin-right: 10px;"><i class="fas fa-arrow-left"></i></a>
             Autos
         </h1>
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+        <div class="mb-3">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCarModal"><i class="fas fa-plus"></i> Añadir Carro</button>
+        </div>        
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">
                 Lista de autos.
@@ -64,14 +72,12 @@
                     <td>{{ $car->brand->name }}</td> 
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Acción a realizar
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Agregar</a></li>
-                                <li><a class="dropdown-item" href="#">Modificar</a></li>
-                                <li><a class="dropdown-item" href="#">Eliminar</a></li>
-                            </ul>
+                            <a href="{{ route('car-edit', $car->id) }}" class="btn btn-primary" role="button"><i class="fas fa-edit"></i></a>
+                            <form action="{{ route('car-delete', $car->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            </form>
                         </div>
                     </td>
                 </tr>
@@ -87,4 +93,49 @@
         </table>
     </div> 
 </main>
+
+<!-- Modal para agregar carro -->
+<div class="modal fade" id="addCarModal" tabindex="-1" aria-labelledby="addCarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCarModalLabel">Añadir Carro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para agregar carro -->
+                <form action="{{ route('car-store') }}" method="POST">
+                    @csrf
+                    <!-- Aquí van los campos del formulario -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Estado</label>
+                        <select class="form-select" id="status" name="status" required>
+                            <option value="Averiado">Averiado</option>
+                            <option value="Falla Parcial">Falla Parcial</option>
+                            <option value="Buen estado">Buen estado</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="img" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="img" name="img" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="brand_id" class="form-label">Marca</label>
+                        <select class="form-select" id="brand_id" name="brand_id" required>
+                            @foreach($brands as $brand)
+                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection

@@ -53,12 +53,17 @@
                                 <input type="text" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}">
                                 <label for="phone">Celular:</label>
                                 <input type="text" class="form-control" id="phone" name="phone" value="{{ auth()->user()->phone }}">
+                                <label for="password">Contraseña:</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                                <label for="password_confirmation">Confirmar Contraseña:</label>
+                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                                 <label for="image">Imagen:</label>
-                                <input type="file" class="form-control" id="image" name="image" value="{{ auth()->user()->image }}">
+                                <input type="file" class="form-control" id="image" name="image">
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar cambios</button>
                         </form>
                     </div>
+                    
                 </div>
             </div>
         </div>
