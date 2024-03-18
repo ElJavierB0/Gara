@@ -41,8 +41,27 @@
                     <td>{{ $remplacement->type }}</td>
                     <td>{{ $remplacement->description ? 'Sí tiene' : 'No tiene' }}</td>
                     <td>${{ $remplacement->price }}</td>
-                    <td>{{ $remplacement->img ? 'Sí' : 'No' }}</td>
-
+                    <td>
+                        @if ($remplacement->img)
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $remplacement->id }}"><i class="fas fa-image"></i></a>
+                            <!-- Ventana modal -->
+                            <div class="modal fade" id="exampleModal{{ $remplacement->id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $remplacement->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered"> <!-- Para centrar la ventana modal -->
+                                    <div class="modal-content" style="aspect-ratio: 1/1; max-width: 50%;">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel{{ $remplacement->id }}">Foto de {{ $remplacement->name }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body justify-content-center text-center"> <!-- Para centrar el contenido horizontalmente -->
+                                            <img src="{{ asset('image/Refacciones/' . $remplacement->img) }}" alt="Foto de perfil" class="custom-im" style="max-width: 100%; max-height: 100%;"> <!-- Se aplica un estilo para que la imagen se adapte al tamaño del contenedor -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            No
+                        @endif
+                    </td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

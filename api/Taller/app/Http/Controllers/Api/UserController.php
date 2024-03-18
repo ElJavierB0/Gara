@@ -90,8 +90,7 @@ class UserController extends Controller
             'id' => 'required|int',
             'email' => 'required|string',
             'phone' => 'required|string',
-            'status' => 'required|int',
-            'level' => 'required|int',
+            'password' => 'required|string',
             'image' => 'required|string',
         ]);
 
@@ -100,9 +99,8 @@ class UserController extends Controller
         $users->name = $data['name'];
         $users->surname = $data['surname'];
         $users->email = $data['email'];
+        $users->password = $data['password'];
         $users->phone = $data['phone'];
-        $users->status = $data['status'];
-        $users->level_id = $data['level_id'];
         $users->image = $data['image'];
 
         if ($users->update()) {

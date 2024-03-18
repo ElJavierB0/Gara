@@ -14,20 +14,20 @@
             <div class="col-md-6">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('brand/update', $brand->id) }}">
+                        <form method="POST" action="{{ route('brand-update', ['id' => $brand->id]) }}">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ $brand->name }}" required>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $brand->name }}" >
                             </div>
                             <div class="mb-3">
                                 <label for="logo" class="form-label">Logo</label>
-                                <input type="text" class="form-control" id="logo" name="logo" value="{{ $brand->logo }}" required>
+                                <input type="file" class="form-control" id="logo" name="logo" value="{{ $brand->logo }}" >
                             </div>
                             <div class="mb-3">
-                                <label for="categor_id" class="form-label">Categoría</label>
-                                <input type="number" class="form-control" id="categor_id" name="categor_id" value="{{ $brand->categor_id }}" required>
+                                <label for="category_id" class="form-label">Categoría</label>
+                                <input type="number" class="form-control" id="category_id" name="category_id" value="{{ $brand->category_id }}" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>

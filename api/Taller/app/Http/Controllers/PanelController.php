@@ -13,4 +13,5 @@ class PanelController extends Controller
     public function config(){
         return view('admin.config'); 
     }
+    
 }

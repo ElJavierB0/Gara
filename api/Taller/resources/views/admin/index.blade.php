@@ -66,49 +66,62 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-tag me-1"></i>
-                        Marca más usada
+                        Marcas más usadas
                     </div>
-                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            @foreach($marcasMasUsadas as $marca)
+                                <li class="list-group">{{ $marca->nombre }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="col-xl-6">
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-exclamation me-1"></i>
-                        Servicio  más demandado
+                        Servicio más demandado
                     </div>
-                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            @foreach($serviciosMasDemandados as $servicio)
+                                <li class="list-group">{{ $servicio->name }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fa-solid fa-registered"></i>
-                Registros Reientes
+                Registros Recientes
             </div>
             <div class="card-body">
-                <table id="datatablesSimple">
+                <table id="datatablesSimple" class="table">
                     <thead>
                         <tr>
                             <th>Empleado</th>
-                            <th>Refaccion</th>
+                            <th>Refacción</th>
                             <th>Servicio</th>
                             <th>Fecha</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($registrosRecientes as $registro)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
+                            <td>{{ $registro->employee->name. ' ' .$registro->employee->lastn }}</td>
+                            <td>{{ $registro->remplacement->name }}</td>
+                            <td>{{ $registro->service->name }}</td>
+                            <td>{{ $registro->date }}</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
+        
     </div>
 </main>
 @endsection

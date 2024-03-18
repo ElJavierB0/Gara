@@ -61,6 +61,16 @@ tr:hover {
     height: 250px;  /* Ajusta automáticamente la altura según el ancho */  
     /* margin: 0px;  Ajusta el valor para el espacio entre imágenes */
 }
+.custom-images {         
+  width: 100%;   /* Establece el ancho deseado */       
+  height: 450px;  /* Ajusta automáticamente la altura según el ancho */  
+  /* margin: 0px;  Ajusta el valor para el espacio entre imágenes */
+}
+.custom-im {         
+  width: 100%;   /* Establece el ancho deseado */       
+  height: 80%;  /* Ajusta automáticamente la altura según el ancho */  
+  /* margin: 0px;  Ajusta el valor para el espacio entre imágenes */
+}
 .Tx {
   color: #ECB347;
   font-size: 12px; /* Ajusta el tamaño del texto según sea necesario */

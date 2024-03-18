@@ -16,7 +16,6 @@ class AdminController extends Controller
                 "id" => $admin->id,
                 "Nombre" => $admin->name,
                 "Nick" => $admin->nick,
-                "Contraseña" => $admin->password,
                 "Foto" => $admin->img,
                 "created" => $admin->created_at,
                 "updated" => $admin->updated_at
@@ -32,7 +31,6 @@ class AdminController extends Controller
             "id" => $admin->id,
             "Nombre" => $admin->name,
             "Nick" => $admin->nick,
-            "Contraseña" => $admin->password,
             "Foto" => $admin->img,
             "created" => $admin->created_at,
             "updated" => $admin->updated_at
@@ -44,13 +42,11 @@ class AdminController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'nick' => 'required|string',
-            'password' => 'required|string',
             'img' => 'required|string'
         ]);
         $admins = Admin::create([
             'name'=>$data['name'],
             'nick'=>$data['nick'],
-            'password'=> $data['password'],
             'img'=>$data['img']
         ]);
         if ($admins) {
@@ -72,7 +68,6 @@ class AdminController extends Controller
             'id' => 'required|int',
             'name' => 'string',
             'nick' => 'string',
-            'password' => 'required|string',
             'img' => 'required|string',
         ]);
 
@@ -80,7 +75,6 @@ class AdminController extends Controller
 
         $admin->name = $data['name'];
         $admin->nick = $data['nick'];
-        $admin->password = $data['password'];
         $admin->img = $data['img'];
 
         if ($admin->update()) {
