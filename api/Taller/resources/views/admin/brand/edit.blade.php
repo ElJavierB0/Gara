@@ -25,9 +25,16 @@
                                 <label for="logo" class="form-label">Logo</label>
                                 <input type="file" class="form-control" id="logo" name="logo" value="{{ $brand->logo }}" >
                             </div>
-                            <div class="mb-3">
-                                <label for="category_id" class="form-label">Categoría</label>
-                                <input type="number" class="form-control" id="category_id" name="category_id" value="{{ $brand->category_id }}" required>
+                            <div class="form-group">
+                                <label for="category_id">Categoría</label>
+                                <select class="form-control" id="category_id" name="category_id" required>
+                                    <option value="">Selecciona una categoría</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" {{ $category->id == $brand->category_id ? 'selected' : '' }}>
+                                            {{ $category->type }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>

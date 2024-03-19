@@ -26,7 +26,7 @@ class BrandController extends Controller
 {
     $request->validate([
         'name' => 'required|string|max:255',
-        'logo' => 'string|max:255',
+        'logo' => 'nullable|string|max:255',
         'category_id' => ['required', 'int', Rule::exists('categories', 'id')],
     ]);
 
@@ -49,7 +49,7 @@ class BrandController extends Controller
 {
     $request->validate([
         'name' => 'required|string|max:255',
-        'logo' => 'string|max:255',
+        'logo' => 'nullable|string|max:255',
         'category_id' => ['required', 'int', Rule::exists('categories', 'id')],
     ]);
 

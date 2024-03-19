@@ -59,11 +59,16 @@
                     </div>
                     <div class="form-group">
                         <label for="logo">Logo</label>
-                        <input type="file" class="form-control" id="logo" name="logo" required>
+                        <input type="file" class="form-control" id="logo" name="logo">
                     </div>
                     <div class="form-group">
                         <label for="category_id">Categoría</label>
-                        <input type="number" class="form-control" id="category_id" name="category_id" required>
+                        <select class="form-control" id="category_id" name="category_id" required>
+                            <option value="">Selecciona una categoría</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->type }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="text-center mb-3">
                         <button type="submit" class="btn btn-primary mr-2">Guardar</button>

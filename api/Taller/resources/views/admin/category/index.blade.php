@@ -46,7 +46,11 @@
                     <td>#{{ $category->id }}</td>
                     <td>{{ $category->type }}</td>
                     <td>
+                        @if ($category->details) <!-- Verificar si hay descripción -->
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailsModal{{ $category->id }}"><i class="fas fa-eye"></i></button>
+                        @else
+                            No tiene
+                        @endif                    
                     </td>
                     <td>
                         <div class="btn-group">

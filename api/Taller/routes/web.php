@@ -10,6 +10,7 @@ use App\Http\Controllers\RecordController;
 use App\Http\Controllers\RemplacementController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,7 @@ Route::get('/admin/service', [ServiceController::class, 'index'])->name('service
 Route::get('/admin/category', [CategoryController::class, 'index'])->name('category');
 Route::get('/admin/record', [RecordController::class, 'index'])->name('record');
 Route::get('/admin/remplacement', [RemplacementController::class, 'index'])->name('remplacement');
+Route::get('/admin/user', [UserController::class, 'index'])->name('user');
 
 
 Route::put('/admin/{id}', [AdminController::class, 'update'])->name('editar-usuario');
@@ -64,6 +66,12 @@ Route::get('/admin/remplacement/edit/{id}', [RemplacementController::class, 'edi
 Route::put('/admin/remplacement/update/{id}', [RemplacementController::class, 'update'])->name('remplacement-update');
 Route::post('/admin/remplacement/store', [RemplacementController::class, 'store'])->name('remplacement-store');
 Route::delete('/admin/remplacement/delete/{id}', [RemplacementController::class, 'destroy'])->name('remplacement-delete');
+
+Route::get('/admin/user/edit/{id}', [UserController::class, 'edit'])->name('user-edit');
+Route::put('/admin/user/update/{id}', [UserController::class, 'update'])->name('user-update');
+Route::post('/admin/user/store', [UserController::class, 'store'])->name('user-store');
+Route::delete('/admin/user/delete/{id}', [UserController::class, 'destroy'])->name('user-delete');
+
 
 Auth::routes();
 

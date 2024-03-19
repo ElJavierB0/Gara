@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ServiceController extends Controller
 {
@@ -20,11 +21,8 @@ class ServiceController extends Controller
             'name' => 'required|string|max:255',
             'type' => 'required|string|in:Servicio,Reparacion,Modificacion',
             'desc' => 'nullable|string',
-            'img' => 'nullable|image|max:10240', // Max 10MB, ajusta el tamaño según tus necesidades
+            'img' => 'nullable|string|max:max:255', // Max 10MB, ajusta el tamaño según tus necesidades
         ]);
-
-        // Asignar la disponibility por defecto
-        $disponibility = 'Disponible';
 
         // Subir la img si se proporcionó
         $imgPath = null;
@@ -36,7 +34,7 @@ class ServiceController extends Controller
         Service::create([
             'name' => $request->name,
             'type' => $request->type,
-            'disponibility' => $disponibility,
+            'disponibility' => 'Disponible', // Por defecto
             'desc' => $request->desc,
             'img' => $imgPath ? 'image/Servicios/' . $imgPath : null, // Concatenar la ruta de la img
         ]);
@@ -52,7 +50,7 @@ class ServiceController extends Controller
             'type' => 'required|string|in:Servicio,Reparacion,Modificacion',
             'disponibility' => 'nullable|string|in:Disponible,No Disponible', // Aquí corregido
             'desc' => 'nullable|string',
-            'img' => 'nullable|image|max:10240', // Max 10MB, ajusta el tamaño según tus necesidades
+            'img' => 'nullable|string|max:255', // Max 10MB, ajusta el tamaño según tus necesidades
         ]);
     
         // Obtener el servicio a actualizar
@@ -66,9 +64,10 @@ class ServiceController extends Controller
     
         // Subir la nueva img si se proporcionó
         if ($request->hasFile('img')) {
-            // Eliminar la img anterior si existe
+            // Eliminar la img anterior si existe (opcional)
             if ($service->img) {
-                unlink(public_path($service->img));
+                // Asegúrate de importar la clase File de Illuminate\Support\Facades\File
+                File::delete(public_path($service->img));
             }
             $imgPath = $request->file('img')->store('services', 'public');
             $service->img = 'image/Servicios/' . $imgPath; // Concatenar la ruta de la img
@@ -88,9 +87,14 @@ class ServiceController extends Controller
             return redirect()->back()->with('error', 'El Servicio no existe.');
         }
     
+        // Eliminar la imagen asociada si existe
+        if ($service->img) {
+            File::delete(public_path($service->img));
+        }
+    
         $service->delete();
     
-        return redirect()->back()->with('success', '¡Servicio eliminado correctamente!');
+        return redirect()->route('service')->with('success', '¡Servicio eliminado correctamente!');
     }    
     
     public function edit($id){

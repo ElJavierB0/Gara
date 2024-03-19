@@ -16,7 +16,7 @@
         @endif
 
         <div class="mb-3">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalAgregar">Agregar Nuevo Servicio</button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalAgregar"><i class="fas fa-plus"></i> Añadir Servicio</button>
         </div>
 
         <table class="table table-hover" style="border: 2px solid #212529; color: #212529;">

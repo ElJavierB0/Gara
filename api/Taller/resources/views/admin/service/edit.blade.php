@@ -46,6 +46,7 @@
                 </div>
             </div>
             <!-- Lado derecho: Contenedor para vista previa del servicio -->
+            <!-- Lado derecho: Contenedor para vista previa del servicio -->
             <div class="col-md-6">
                 <div class="card mb-4">
                     <div class="card-body">
@@ -57,6 +58,14 @@
                             <h5 class="card-title">Vista Previa del Servicio</h5>
                             <hr>
                             <img src="{{ asset('image/Servicios/' . $service->img) }}" alt="Vista Previa del Servicio" class="img-fluid">
+                            <div class="mb-3">
+                                <label for="delete_img" class="form-label">Eliminar Imagen</label>
+                                <select class="form-select" id="delete_img" name="delete_img">
+                                    <option value="0">No</option>
+                                    <option value="1">Sí</option>
+                                </select>
+                                <p class="text-muted">Selecciona "Sí" si deseas eliminar la imagen actual.</p>
+                            </div>
                         @else
                             <p class="text-center">No hay imagen disponible</p>
                         @endif
