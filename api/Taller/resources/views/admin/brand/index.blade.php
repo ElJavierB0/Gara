@@ -16,7 +16,7 @@
         @endif
         <ol class="breadcrumb mb-4">
             <div class="text-center">
-                <button type="button" class="btn btn-primary" onclick="openPopup()">Añadir Marcas</button>
+                <button type="button" class="btn btn-success" onclick="openPopup()">Añadir Marcas</button>
             </div>
         </ol>
         <div class="row">

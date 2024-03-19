@@ -55,6 +55,10 @@ Route::put('/admin/category/update/{id}', [CategoryController::class, 'update'])
 Route::post('/admin/category/store', [CategoryController::class, 'store'])->name('category-store');
 Route::delete('/admin/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category-delete');
 
+Route::get('/admin/service/edit/{id}', [ServiceController::class, 'edit'])->name('service-edit');
+Route::put('/admin/service/update/{id}', [ServiceController::class, 'update'])->name('service-update');
+Route::post('/admin/service/store', [ServiceController::class, 'store'])->name('service-store');
+Route::delete('/admin/service/delete/{id}', [ServiceController::class, 'destroy'])->name('service-delete');
 
 
 Auth::routes();

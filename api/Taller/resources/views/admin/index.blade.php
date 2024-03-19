@@ -93,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mb-4">
+        <div class="card mb-5">
             <div class="card-header">
                 <i class="fa-solid fa-registered"></i>
                 Registros Recientes
@@ -102,6 +102,7 @@
                 <table id="datatablesSimple" class="table">
                     <thead>
                         <tr>
+                            <th>Usuario</th>
                             <th>Empleado</th>
                             <th>Refacción</th>
                             <th>Servicio</th>
@@ -111,13 +112,27 @@
                     <tbody>
                         @foreach($registrosRecientes as $registro)
                         <tr>
-                            <td>{{ $registro->employee->name. ' ' .$registro->employee->lastn }}</td>
+                            <td>
+                                @foreach($usuarios as $usuario)
+                                    @if($usuario->id == $registro->user_id)
+                                        {{ $usuario->name }} {{ $usuario->surname }}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($empleados as $empleado)
+                                    @if($empleado->id == $registro->employee_id)
+                                        {{ $empleado->name }} {{ $empleado->surname }}
+                                    @endif
+                                @endforeach
+                            </td>
                             <td>{{ $registro->remplacement->name }}</td>
                             <td>{{ $registro->service->name }}</td>
                             <td>{{ $registro->date }}</td>
                         </tr>
                         @endforeach
                     </tbody>
+                    
                 </table>
             </div>
         </div>

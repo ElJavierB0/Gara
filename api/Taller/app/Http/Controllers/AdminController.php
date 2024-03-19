@@ -21,9 +21,18 @@ class AdminController extends Controller
 
     public function indi()
     {
-        // Obtener registros más recientes
-        $registrosRecientes = Record::orderByDesc('date')->take(5)->get();
+        // Obtener registros más recientes con los datos de los usuarios asociados y otros datos de registros
+        $registrosRecientes = Record::with(['remplacement', 'service'])
+                                    ->orderByDesc('date')
+                                    ->take(5)
+                                    ->get();
+
+        // Obtener usuarios con nivel 2 (empleados)
+        $empleados = User::where('level_id', 2)->get();
     
+        // Obtener usuarios con nivel 1 (usuarios)
+        $usuarios = User::where('level_id', 1)->get();
+
         // Obtener marcas más usadas con sus nombres
         $marcasMasUsadas = DB::table('cars')
                             ->join('brands', 'cars.brand_id', '=', 'brands.id')
@@ -41,7 +50,7 @@ class AdminController extends Controller
                                     ->limit(3)
                                     ->get();
     
-        return view('admin.index', compact('registrosRecientes', 'marcasMasUsadas', 'serviciosMasDemandados'));
+        return view('admin.index', compact('registrosRecientes', 'marcasMasUsadas', 'serviciosMasDemandados', 'empleados', 'usuarios'));
     }
 
     public function update(Request $request)
