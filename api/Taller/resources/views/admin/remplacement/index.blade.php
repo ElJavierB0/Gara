@@ -9,17 +9,15 @@
             <a href="{{ route('admin') }}" style="color: #212529; text-decoration: none; margin-right: 10px;"><i class="fas fa-arrow-left"></i></a>
             Refacciones
         </h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active" style="display: flex; align-items: center;">
-                <div>
-                    Mostrando <b>{{ $remplacements->count() }}</b> resultados
-                    de un total de <b>{{ $remplacements->total() }}</b>
-                </div>
-            </li>
-        </ol>
-        
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+        <div class="mb-3">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModalAgregar"><i class="fas fa-plus"></i> Añadir Refacción</button>
+        </div> 
         <table class="table table-hover" style="border: 2px solid #212529; color: #212529;">
-
             <thead>
                 <tr>
                     <th>Registro</th>
@@ -39,7 +37,13 @@
                     <td>#{{ $remplacement->id }}</td>
                     <td>{{ $remplacement->name }}</td>
                     <td>{{ $remplacement->type }}</td>
-                    <td>{{ $remplacement->description ? 'Sí tiene' : 'No tiene' }}</td>
+                    <td>
+                        @if ($remplacement->description)
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#descriptionModal{{ $remplacement->id }}"><i class="fas fa-eye"></i></button>
+                        @else
+                            No tiene
+                        @endif
+                    </td>
                     <td>${{ $remplacement->price }}</td>
                     <td>
                         @if ($remplacement->img)
@@ -64,16 +68,28 @@
                     </td>
                     <td>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Accion a realizar
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Agregar</a></li>
-                                <li><a class="dropdown-item" href="#">Modificar</a></li>
-                                <li><a class="dropdown-item" href="#">Eliminar </a></li>
-                            </ul>
+                            <a href="{{ route('remplacement-edit', $remplacement->id) }}" class="btn btn-primary" role="button"><i class="fas fa-edit"></i></a>
+                            <form action="{{ route('remplacement-delete', $remplacement->id) }}" method="POST" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            </form>                            
                         </div>
                     </td>
+                    <!-- Modal para mostrar detalles -->
+                <div class="modal fade" id="descriptionModal{{ $remplacement->id }}" tabindex="-1" aria-labelledby="descriptionModal{{ $remplacement->id }}Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="descriptionModal{{ $remplacement->id }}Label">Detalles de la Categoría</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ $remplacement->description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </tr>
                 @endforeach
             </tbody>
@@ -88,4 +104,43 @@
         </table>
     </div> 
 </main>
+
+<!-- Modal para agregar refacción -->
+<div class="modal fade" id="exampleModalAgregar" tabindex="-1" aria-labelledby="exampleModalLabelAgregar" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelAgregar">Agregar Nueva Refacción</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('remplacement-store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Tipo</label>
+                        <input type="text" class="form-control" id="type" name="type">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Precio</label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="price" name="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="img" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="img" name="img">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection

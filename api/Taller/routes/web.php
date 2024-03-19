@@ -60,6 +60,10 @@ Route::put('/admin/service/update/{id}', [ServiceController::class, 'update'])->
 Route::post('/admin/service/store', [ServiceController::class, 'store'])->name('service-store');
 Route::delete('/admin/service/delete/{id}', [ServiceController::class, 'destroy'])->name('service-delete');
 
+Route::get('/admin/remplacement/edit/{id}', [RemplacementController::class, 'edit'])->name('remplacement-edit');
+Route::put('/admin/remplacement/update/{id}', [RemplacementController::class, 'update'])->name('remplacement-update');
+Route::post('/admin/remplacement/store', [RemplacementController::class, 'store'])->name('remplacement-store');
+Route::delete('/admin/remplacement/delete/{id}', [RemplacementController::class, 'destroy'])->name('remplacement-delete');
 
 Auth::routes();
 
