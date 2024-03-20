@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,25 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        // Verificar si el usuario tiene un level_id válido
+        if ($user->level_id != 2 && $user->level_id != 3) {
+            // Si el nivel no es válido, cerrar la sesión y redirigir con un mensaje de error
+            Auth::logout();
+            return redirect('/login')->with('error', 'No tienes permiso para acceder.');
+        }
+
+        // Si el usuario tiene un nivel válido, redirigir según corresponda
+        if ($user->level_id != 2) {
+            return redirect()->intended('/admin');
+        } elseif ($user->level_id != 3) {
+            return redirect()->intended('/admin');
+        }
+
+        // Si el usuario no tiene un nivel válido, se puede redirigir a una ruta predeterminada
+        return redirect()->intended('/');
     }
 }

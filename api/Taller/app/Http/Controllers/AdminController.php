@@ -148,16 +148,6 @@ class AdminController extends Controller
 
         // Guardar la imagen sin especificar un nombre específico
         // Guardar la imagen sin especificar un nombre específico
-        $username = $request->name;
-
-        // Establecer el nombre de la imagen utilizando el nombre de usuario
-        $imageName = $username . '.' . $request->image->extension();
-        
-        // Mover la imagen a la carpeta deseada
-        $request->image->move(public_path('image/Perfil'), $imageName);
-        
-        // Establecer la ruta de la imagen en la base de datos
-        $user->image = asset('image/Perfil/' . $imageName);
         
         $user->save();
 

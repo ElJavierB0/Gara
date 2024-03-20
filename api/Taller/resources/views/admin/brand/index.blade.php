@@ -28,11 +28,15 @@
                         <h5 class="card-title">{{ $brand->name }}
                             <span class="crud-icons" style="float: right; display: flex; align-items: center;">
                                 <a href="{{ route('brand-edit', ['id' => $brand->id]) }}" style="color: inherit; text-decoration: none; margin-left: 10px;"><i class="fas fa-edit"></i></a>
-                                <form action="{{ route('brand-delete', ['id' => $brand->id]) }}" method="post" style="margin-left: 10px;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" style="background: none; border: none; cursor: pointer; color: inherit;"><i class="fas fa-trash"></i></button>
-                                </form>
+                                @auth
+                                    @if(auth()->user()->level_id == 3)
+                                        <form action="{{ route('brand-delete', ['id' => $brand->id]) }}" method="post" style="margin-left: 10px;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" style="background: none; border: none; cursor: pointer; color: inherit;"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    @endif
+                                @endauth
                             </span>
                         </h5>
                     </div>

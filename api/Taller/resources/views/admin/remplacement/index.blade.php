@@ -69,11 +69,15 @@
                     <td>
                         <div class="btn-group">
                             <a href="{{ route('remplacement-edit', $remplacement->id) }}" class="btn btn-primary" role="button"><i class="fas fa-edit"></i></a>
+                            @auth
+                                @if(auth()->user()->level_id == 3)
                             <form action="{{ route('remplacement-delete', $remplacement->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                            </form>                            
+                            </form> 
+                            @endif
+                            @endauth                           
                         </div>
                     </td>
                     <!-- Modal para mostrar detalles -->

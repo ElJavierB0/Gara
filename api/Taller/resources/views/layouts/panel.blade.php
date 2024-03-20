@@ -37,21 +37,26 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{ asset('image/Perfil/' . auth()->user()->image) }}" alt="Foto de perfil" class="rounded-circle" style="width: 30px; height: 30px;">
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('admi') }}">Configuración</a></li>
-                        <li><a class="dropdown-item" href="{{ route('user') }}">Usuarios</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Cerrar Sesión
-                            </a>
-                        </li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </ul>
+                    @auth
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            @if(auth()->user()->level_id == 3)
+                                <li><a class="dropdown-item" href="{{ route('user') }}">Usuarios</a></li>
+                            @endif
+                            <li><a class="dropdown-item" href="{{ route('admi') }}">Configuración</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Cerrar Sesión
+                                </a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </ul>
+                    @endauth
                 </li>
             </ul>
+            
             
         </nav>
         <div id="layoutSidenav">
@@ -89,15 +94,19 @@
                                 </nav>
                             </div>
                             
-                            <a class="nav-link" href="{{ route('personal') }}">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
-                                Personal
-                            </a>
-                            <a class="nav-link" href="{{ route('record') }}">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-clipboard"></i></div>
-                                Registros
-                            </a>
-                            </div>
+                            @auth
+                                @if(auth()->user()->level_id == 3)
+                                    <a class="nav-link" href="{{ route('personal') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
+                                        Personal
+                                    </a>
+                                    <a class="nav-link" href="{{ route('record') }}">
+                                        <div class="sb-nav-link-icon"><i class="fa-solid fa-clipboard"></i></div>
+                                        Registros
+                                    </a>
+                                @endif
+                            @endauth
+                        </div>
                     </div>
                     
                     <div class="sb-sidenav-footer">

@@ -46,7 +46,7 @@ class UserController extends Controller
             'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$request->id,
             'phone' => 'nullable|string|max:10',
-            'password' => 'required|string|min:8',
+            'password' => 'nullable|string|min:8',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -76,7 +76,7 @@ class UserController extends Controller
             'phone' => 'nullable|string|max:10',
             'password' => 'string|min:8', // Contraseña no es requerida
             'image' => 'nullable|string|max:255',
-            'status' => 'integer|min:1|max:3', // Status entre 1 y 3
+            'status' => 'string|in:0,1', // Acepta solo '0' o '1' como valores válidos
             'level_id' => 'integer|min:1|max:3', // level_id entre 1 y 3
         ]);
 
@@ -85,7 +85,7 @@ class UserController extends Controller
 
         // Asegurar que status y level_id estén en un rango válido
         if ($request->has('status')) {
-            $user->status = min(max($request->status, 1), 3);
+            $user->status = $request->status; // No es necesario validar aquí, ya que la validación anterior garantiza que solo se puede pasar '0' o '1'
         }
         if ($request->has('level_id')) {
             $user->level_id = min(max($request->level_id, 1), 3);

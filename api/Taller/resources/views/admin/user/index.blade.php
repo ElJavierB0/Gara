@@ -42,8 +42,8 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->surname }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->status }}</td>
-                    <td>{{ $user->level_id }}</td>
+                    <td>{{ $user->status == 1 ? 'Activo' : 'Inactivo' }}</td>
+                    <td>{{ $user->level->name }}</td>
                     <td>
                         @if ($user->imagen)
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalFoto{{ $user->id }}"><i class="fas fa-image"></i></a>

@@ -55,11 +55,15 @@
                     <td>
                         <div class="btn-group">
                             <a href="{{ route('category-edit', $category->id) }}" class="btn btn-primary" role="button"><i class="fas fa-edit"></i></a>
-                            <form action="{{ route('category-delete', $category->id) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                            </form>                            
+                            @auth
+                                @if(auth()->user()->level_id == 3)
+                                <form action="{{ route('category-delete', $category->id) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                </form>                            
+                                @endif
+                            @endauth
                         </div>
                     </td>
                 </tr>

@@ -1,5 +1,8 @@
 @extends('layouts.main')
 
+@section('title', 'Login')
+
+
 @section('menu')
 <!-- Barra de Navegación -->
 <nav id="menu" class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -47,6 +50,15 @@
 <div class="container mt-5"> <!-- Agregado el margen superior -->
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if(session('error'))
+                    <div class="row mb-3">
+                        <div class="col-md-6 offset-md-4">
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('error') }}
+                            </div>
+                        </div>
+                    </div>
+                    @endif
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
