@@ -44,7 +44,7 @@ class CarController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'status' => 'required|string',
-            'img' => 'required|string',
+            'img' => 'nullable|string',
             'brand' => 'required|int',
         ]);
         $cars = Car::create([

@@ -24,7 +24,7 @@ public function update(Request $request, $id)
 {
     $validator = Validator::make($request->all(), [
         'type' => 'required|string|max:255',
-        'details' => 'nullable|string|max:255',
+        'details' => 'required|string|max:255',
     ]);
 
     if ($validator->fails()) {
@@ -59,7 +59,7 @@ public function update(Request $request, $id)
 {
     $request->validate([
         'type' => 'required|string|max:255',
-        'details' => 'nullable|string',
+        'details' => 'required|string',
     ]);
 
     Category::create($request->all());

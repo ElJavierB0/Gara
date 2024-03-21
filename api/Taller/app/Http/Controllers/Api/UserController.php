@@ -55,10 +55,10 @@ class UserController extends Controller
             'name' => 'required|string',
             'surname' => 'required|string',
             'email' => 'required|string',
-            'phone' => 'required|numeric',
-            'password' => 'required|string',
-            'level_id' => 'nullable|string', // Hacer que level_id sea opcional
-            'image' => 'nullable|string', // Hacer que image sea opcional
+            'phone' => 'nullable|numeric',
+            'password' => 'nullable|string',
+            'level_id' => 'required|string', // Hacer que level_id sea opcional
+            'image' => 'required|string', // Hacer que image sea opcional
         ]);
     
         // Encriptar la contraseña con bcrypt
@@ -75,9 +75,9 @@ class UserController extends Controller
             'surname' => $data['surname'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'password' => $hashedPassword,
-            'level_id' => $levelId,
-            'image' => $image,
+            'password' => $data['password'],
+            'level_id' => $data['level_id'],
+            'image' => $data['image'],
             // Otros campos según sea necesario
         ]);
     

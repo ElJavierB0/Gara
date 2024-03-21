@@ -20,8 +20,8 @@ class ServiceController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'type' => 'required|string|in:Servicio,Reparacion,Modificacion',
-            'desc' => 'nullable|string',
-            'img' => 'nullable|string|max:max:255', // Max 10MB, ajusta el tamaño según tus necesidades
+            'desc' => 'required|string',
+            'img' => 'required|string|max:255', // Max 10MB, ajusta el tamaño según tus necesidades
         ]);
 
         // Subir la img si se proporcionó

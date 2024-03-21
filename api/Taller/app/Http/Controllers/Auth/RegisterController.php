@@ -75,10 +75,4 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-
-    protected function registered(Request $request, $user)
-    {
-        // Redirige al usuario a la página de inicio después del registro
-        return redirect('/login')->with('success', '¡Registro exitoso! Por favor contacta a un adminisrador.');
-    }
 }

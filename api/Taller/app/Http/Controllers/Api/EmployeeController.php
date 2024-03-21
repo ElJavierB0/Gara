@@ -44,12 +44,14 @@ class EmployeeController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'lastn' => 'required|string',
+            'password' => 'required|string',
             'img' => 'required|string',
             'number' => 'required|int',
         ]);
         $employees = Employee::create([
             'name'=>$data['name'],
             'lastn'=>$data['lastn'],
+            'password'=>$data['lastn'],
             'img'=>$data['img'],
             'number'=>$data['number'],
         ]);

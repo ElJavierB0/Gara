@@ -42,11 +42,13 @@ class AdminController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'nick' => 'required|string',
+            'password' => 'required|string',
             'img' => 'required|string'
         ]);
         $admins = Admin::create([
             'name'=>$data['name'],
             'nick'=>$data['nick'],
+            'password'=>$data['password'],
             'img'=>$data['img']
         ]);
         if ($admins) {
@@ -68,7 +70,7 @@ class AdminController extends Controller
             'id' => 'required|int',
             'name' => 'string',
             'nick' => 'string',
-            'img' => 'required|string',
+            'img' => 'string',
         ]);
 
         $admin =  Admin::where('id', '=', $data['id'])->first();

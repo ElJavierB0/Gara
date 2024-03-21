@@ -20,9 +20,9 @@ class RemplacementController extends Controller
     $request->validate([
         'name' => 'required|string|max:255',
         'type' => 'required|string|max:255',
-        'price' => 'required|numeric|min:0',
-        'img' => 'nullable|image|max:10240',
-        'description' => 'nullable|string',
+        'price' => 'required|int|min:0',
+        'img' => 'required|image|max:10240',
+        'description' => 'required|string',
     ]);
 
     $imgPath = null;
@@ -47,7 +47,7 @@ public function update(Request $request, $id)
     $request->validate([
         'name' => 'required|string|max:255',
         'type' => 'required|string|max:255',
-        'price' => 'nullable|numeric|min:0',
+        'price' => 'nullable|int|min:0',
         'img' => 'nullable|image|max:10240',
         'description' => 'nullable|string',
     ]);

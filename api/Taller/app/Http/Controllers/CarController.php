@@ -22,7 +22,7 @@ class CarController extends Controller
             'name' => 'required|string|max:255',
             'status' => 'required|in:Averiado,Falla Parcial,Buen estado',
             'img' => 'nullable|string|max:255',
-            'brand_id' => 'exists:brands,id', // Ahora es requerido y se verifica su existencia
+            'brand_id' => 'required|exists:brands,id', // Ahora es requerido y se verifica su existencia
         ]);
 
         if ($validator->fails()) {

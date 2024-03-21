@@ -45,7 +45,8 @@ class ServiceController extends Controller
             'name' => 'required|string',
             'type' => 'required|string',
             'disponibility' => 'required',
-            'desc' => 'required'
+            'desc' => 'required',
+            'img' => 'required'
         ]);
         $services = Service::create([
             'name'=>$data['name'],

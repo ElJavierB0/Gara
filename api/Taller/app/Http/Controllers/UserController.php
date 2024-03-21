@@ -97,7 +97,7 @@ public function update(Request $request, $id)
         'surname' => 'string|max:255',
         'email' => 'string|email|max:255|unique:users,email,'.$user->id,
         'phone' => 'nullable|string|max:10',
-        'password' => 'string|min:8', // Contraseña no es requerida
+        'password' => 'nullable|string|min:8', // Contraseña no es requerida
         'image' => 'nullable|string|max:255',
         'status' => 'string|in:0,1', // Acepta solo '0' o '1' como valores válidos
         'level_id' => 'integer|min:1|max:3', // level_id entre 1 y 3

@@ -95,8 +95,8 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'phone' => 'required|string|max:10',
-            'password' => 'string|min:8',
+            'phone' => 'nullable|string|max:10',
+            'password' => 'required|string|min:8',
             'image' => 'image', // Eliminada la validación específica del tipo de imagen
         ]);
 
@@ -131,9 +131,9 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'phone' => 'required|string|max:10',
-            'password' => 'required|string|min:8',
-            'image' => 'image', // Validación de imagen
+            'phone' => 'nullable|string|max:10',
+            'password' => 'nullable|string|min:8',
+            'image' => 'nullable|image', // Validación de imagen
         ]);
 
 

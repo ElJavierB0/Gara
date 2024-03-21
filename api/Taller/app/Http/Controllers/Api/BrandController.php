@@ -41,10 +41,12 @@ class BrandController extends Controller
     public function create(Request $request) {
         $data = $request->validate([
             'name' => 'required|string',
+            'logo' => 'required|string',
             'category' => 'required|int',
         ]);
         $brands = Brand::create([
             'name'=>$data['name'],
+            'logo'=>$data['logo'],
             'category'=>$data['category'],
         ]);
         if ($brands) {
