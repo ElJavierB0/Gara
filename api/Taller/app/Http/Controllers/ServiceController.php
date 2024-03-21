@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
@@ -43,62 +43,65 @@ class ServiceController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        // Validar los datos del formulario
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'type' => 'required|string|in:Servicio,Reparacion,Modificacion',
-            'disponibility' => 'nullable|string|in:Disponible,No Disponible', // Aquí corregido
-            'desc' => 'nullable|string',
-            'img' => 'nullable|string|max:255', // Max 10MB, ajusta el tamaño según tus necesidades
-        ]);
-    
-        // Obtener el servicio a actualizar
-        $service = Service::findOrFail($id);
-    
-        // Actualizar los campos del servicio
-        $service->name = $request->name;
-        $service->type = $request->type;
-        $service->disponibility = $request->disponibility; // Aquí corregido
-        $service->desc = $request->desc;
-    
-        // Subir la nueva img si se proporcionó
-        if ($request->hasFile('img')) {
-            // Eliminar la img anterior si existe (opcional)
-            if ($service->img) {
-                // Asegúrate de importar la clase File de Illuminate\Support\Facades\File
-                File::delete(public_path($service->img));
-            }
-            $imgPath = $request->file('img')->store('services', 'public');
-            $service->img = 'image/Servicios/' . $imgPath; // Concatenar la ruta de la img
-        }
-    
-        // Guardar los cambios
-        $service->save();
-    
-        return redirect()->route('service')->with('success', 'Servicio actualizado correctamente.');
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'type' => 'nullable|string|in:Servicio,Reparacion,Modificacion',
+        'disponibility' => 'nullable|string|in:Disponible,No Disponible', 
+        'desc' => 'nullable|string',
+        'img' => 'nullable|image|max:10240',
+    ]);
+
+    $services = Service::findOrFail($id);
+
+    // Verificar si el usuario eligió eliminar la imagen actual
+    if ($request->delete_img == 1 && $services->img) {
+        // Eliminar la imagen actual del almacenamiento
+        Storage::disk('public')->delete($services->img);
+        // Establecer el campo de imagen en null en la base de datos
+        $services->img = null;
     }
 
-    public function destroy($id)
-    {
-        $service = Service::find($id);
-    
-        if (!$service) {
-            return redirect()->back()->with('error', 'El Servicio no existe.');
+    $services->name = $request->name;
+    $services->type = $request->type;
+    $services->desc = $request->desc;
+
+    // Procesar la imagen si se proporcionó una nueva
+    if ($request->hasFile('img')) {
+        // Eliminar la imagen actual si existe
+        if ($services->img) {
+            Storage::disk('public')->delete($services->img);
         }
-    
-        // Eliminar la imagen asociada si existe
-        if ($service->img) {
-            File::delete(public_path($service->img));
-        }
-    
-        $service->delete();
-    
-        return redirect()->route('service')->with('success', '¡Servicio eliminado correctamente!');
-    }    
-    
-    public function edit($id){
-        $service = Service::findOrFail($id);
-        return view('admin.service.edit', ['service' => $service]); 
+        // Guardar la nueva imagen
+        $imgPath = $request->file('img')->store('Servicios', 'public');
+        $services->img = $imgPath;
     }
+
+    if ($request->filled('price')) {
+        $services->price = $request->price;
+    }
+
+    $services->save();
+
+    return redirect()->route('service')->with('success', 'Servicio actualizado correctamente.');
+}
+
+public function destroy($id)
+{
+    $services = Service::find($id);
+
+    if (!$services) {
+        return redirect()->route('service')->with('error', 'El Servicio no existe.');
+    }
+
+    $services->delete();
+
+    return redirect()->route('service')->with('success', '¡Servicio eliminado correctamente!');
+}    
+
+public function edit($id)
+{
+    $service = Service::findOrFail($id);
+    return view('admin.service.edit', ['service' => $service]); 
+}
 }

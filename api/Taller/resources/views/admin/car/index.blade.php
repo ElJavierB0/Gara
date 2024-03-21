@@ -118,6 +118,7 @@
                     <div class="mb-3">
                         <label for="status" class="form-label">Estado</label>
                         <select class="form-select" id="status" name="status" required>
+                            <option value="">Selecciona un Estado</option>
                             <option value="Averiado">Averiado</option>
                             <option value="Falla Parcial">Falla Parcial</option>
                             <option value="Buen estado">Buen estado</option>
@@ -130,6 +131,7 @@
                     <div class="mb-3">
                         <label for="brand_id" class="form-label">Marca</label>
                         <select class="form-select" id="brand_id" name="brand_id" required>
+                            <option value="">Selecciona una Marca</option>
                             @foreach($brands as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                             @endforeach

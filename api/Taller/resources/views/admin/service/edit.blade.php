@@ -4,60 +4,35 @@
 
 @section('content')
 <main>
-    <div class="container-fluid px-4">
+    <div class="container mt-3">
         <h1 class="mt-4">
             <a href="{{ route('service') }}" style="color: #212529; text-decoration: none; margin-right: 10px;"><i class="fas fa-arrow-left"></i></a>
             Editar Servicio
         </h1>
-        <div class="row">
-            <!-- Lado izquierdo: Contenedor actual -->
+        <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card mb-4">
+                <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('service-update', ['id' => $service->id]) }}" enctype="multipart/form-data">
+                        <form action="{{ route('service-update', $service->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ $service->name }}" required>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $service->name }}">
                             </div>
                             <div class="mb-3">
                                 <label for="type" class="form-label">Tipo</label>
-                                <select class="form-select" id="type" name="type" required>
-                                    <option value="Servicio" {{ $service->type == 'Servicio' ? 'selected' : '' }}>Servicio</option>
-                                    <option value="Reparacion" {{ $service->type == 'Reparacion' ? 'selected' : '' }}>Reparación</option>
-                                    <option value="Modificacion" {{ $service->type == 'Modificacion' ? 'selected' : '' }}>Modificación</option>
-                                </select>
+                                <input type="text" class="form-control" id="type" name="type" value="{{ $service->type }}">
                             </div>
-                            <div class="mb-3">
-                                <label for="disponibility" class="form-label">Disponibilidad</label>
-                                <select class="form-select" id="disponibility" name="disponibility" required>
-                                    <option value="Disponible" {{ $service->disponibility == 'Disponible' ? 'selected' : '' }}>Disponible</option>
-                                    <option value="No Disponible" {{ $service->disponibility == 'No Disponible' ? 'selected' : '' }}>No Disponible</option>
-                                </select>
-                            </div>                            
                             <div class="mb-3">
                                 <label for="desc" class="form-label">Descripción</label>
                                 <textarea class="form-control" id="desc" name="desc" rows="3">{{ $service->desc }}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- Lado derecho: Contenedor para vista previa del servicio -->
-            <!-- Lado derecho: Contenedor para vista previa del servicio -->
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="img" class="form-label">Imagen</label>
-                            <input type="file" class="form-control" id="img" name="img">
-                        </div>
-                        @if($service->img)
-                            <h5 class="card-title">Vista Previa del Servicio</h5>
-                            <hr>
-                            <img src="{{ asset('image/Servicios/' . $service->img) }}" alt="Vista Previa del Servicio" class="img-fluid">
+                            <div class="mb-3">
+                                <label for="img" class="form-label">Imagen</label>
+                                <input type="file" class="form-control" id="img" name="img">
+                                <p class="text-muted">Deja este campo en blanco si no deseas cambiar la imagen.</p>
+                            </div>
                             <div class="mb-3">
                                 <label for="delete_img" class="form-label">Eliminar Imagen</label>
                                 <select class="form-select" id="delete_img" name="delete_img">
@@ -66,9 +41,8 @@
                                 </select>
                                 <p class="text-muted">Selecciona "Sí" si deseas eliminar la imagen actual.</p>
                             </div>
-                        @else
-                            <p class="text-center">No hay imagen disponible</p>
-                        @endif
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </form>
                     </div>
                 </div>
             </div>

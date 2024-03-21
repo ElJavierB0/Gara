@@ -13,6 +13,11 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">{{auth()->user()->level->name }}</li>
         </ol>
+        @if (Session::has('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ Session::get('error') }}
+        </div>
+        @endif
         <div class="row">
             <div class="col-md-4">
                 <div class="card bg-primary text-white mb-4">
@@ -93,50 +98,6 @@
                 </div>
             </div>
         </div>
-        <div class="card mb-5">
-            <div class="card-header">
-                <i class="fa-solid fa-registered"></i>
-                Registros Recientes
-            </div>
-            <div class="card-body">
-                <table id="datatablesSimple" class="table">
-                    <thead>
-                        <tr>
-                            <th>Usuario</th>
-                            <th>Empleado</th>
-                            <th>Refacción</th>
-                            <th>Servicio</th>
-                            <th>Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($registrosRecientes as $registro)
-                        <tr>
-                            <td>
-                                @foreach($usuarios as $usuario)
-                                    @if($usuario->id == $registro->user_id)
-                                        {{ $usuario->name }} {{ $usuario->surname }}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>
-                                @foreach($empleados as $empleado)
-                                    @if($empleado->id == $registro->employee_id)
-                                        {{ $empleado->name }} {{ $empleado->surname }}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>{{ $registro->remplacement->name }}</td>
-                            <td>{{ $registro->service->name }}</td>
-                            <td>{{ $registro->date }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    
-                </table>
-            </div>
-        </div>
-        
     </div>
 </main>
 @endsection
