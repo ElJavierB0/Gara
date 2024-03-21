@@ -20,6 +20,7 @@ Route::get('/old', function () {
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/busqueda', [PanelController::class, 'search'])->name('search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [PanelController::class, 'index'])->name('admin');
@@ -71,7 +72,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/user/edit/{id}', [UserController::class, 'edit'])->name('user-edit');
     Route::put('/admin/user/update/{id}', [UserController::class, 'update'])->name('user-update');
-    Route::post('/admin/user/store', [UserController::class, 'store'])->name('user-store');
+    Route::post('/admin/user/create', [UserController::class, 'create'])->name('user-store');
     Route::delete('/admin/user/delete/{id}', [UserController::class, 'destroy'])->name('user-delete');
 });
 

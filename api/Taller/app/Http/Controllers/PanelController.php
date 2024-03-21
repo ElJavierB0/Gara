@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\Brand;
 use App\Models\Remplacement;
 use App\Models\Service;
-use App\Models\User;
 
 class PanelController extends Controller
 {
@@ -19,53 +19,56 @@ class PanelController extends Controller
         return view('admin.config'); 
     }
 
-    // public function search(Request $request)
-    // {
-    //     $searchTerm = $request->input('q');
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+    $results = [];
 
-    //     // Realiza la búsqueda en tus modelos utilizando consultas Eloquent
-    //     $users = User::where('name', 'LIKE', '%' . $searchTerm . '%')
-    //                     ->orWhere('surname', 'LIKE', '%' . $searchTerm . '%')
-    //                     ->orWhere('email', 'LIKE', '%' . $searchTerm . '%')
-    //                     ->orWhere('phone', 'LIKE', '%' . $searchTerm . '%')
-    //                     ->get();
+    // Buscar en la tabla de Marcas
+    $brands = Brand::where('name', 'LIKE', "%$query%")->get();
+    foreach ($brands as $brand) {
+        $results['Brand'][$brand->id] = $brand->name;
+    }
+    // Buscar en la tabla de Categorías
+    $categories = Category::where(function ($queryBuilder) use ($query) {
+        $queryBuilder->where('type', 'LIKE', "%$query%")
+                        ->orWhere('details', 'LIKE', "%$query%");
+    })->get();
+    foreach ($categories as $category) {
+        $results['Category'][$category->id] = $category->type;
+    }
 
-    //     $services = Service::where('name', 'LIKE', '%' . $searchTerm . '%')
-    //                         ->orWhere('type', 'LIKE', '%' . $searchTerm . '%')
-    //                         ->orWhere('disponibility', 'LIKE', '%' . $searchTerm . '%')
-    //                         ->orWhere('desc', 'LIKE', '%' . $searchTerm . '%')
-    //                         ->get();
+    // Buscar en la tabla de Carros
+    $cars = Car::where(function ($queryBuilder) use ($query) {
+        $queryBuilder->where('name', 'LIKE', "%$query%")
+                        ->orWhere('status', 'LIKE', "%$query%");
+    })->get();
+    foreach ($cars as $car) {
+        $results['Car'][$car->id] = $car->name;
+    }
 
-    //     $remplacements = Remplacement::where('name', 'LIKE', '%' . $searchTerm . '%')
-    //                                     ->orWhere('type', 'LIKE', '%' . $searchTerm . '%')
-    //                                     ->orWhere('description', 'LIKE', '%' . $searchTerm . '%')
-    //                                     ->orWhere('price', 'LIKE', '%' . $searchTerm . '%')
-    //                                     ->get();
+    // Buscar en la tabla de Servicios
+    $services = Service::where(function ($queryBuilder) use ($query) {
+        $queryBuilder->where('name', 'LIKE', "%$query%")
+                        ->orWhere('type', 'LIKE', "%$query%")
+                        ->orWhere('disponibility', 'LIKE', "%$query%")
+                        ->orWhere('desc', 'LIKE', "%$query%");
+    })->get();
+    foreach ($services as $serviCe) {
+        $results['Service'][$serviCe->id] = $serviCe->name;
+    }
 
-    //     $categories = Category::where('type', 'LIKE', '%' . $searchTerm . '%')
-    //                             ->orWhere('details', 'LIKE', '%' . $searchTerm . '%')
-    //                             ->get();
+    // Buscar en la tabla de Refacciones
+    $remplacements = Remplacement::where(function ($queryBuilder) use ($query) {
+        $queryBuilder->where('name', 'LIKE', "%$query%")
+                        ->orWhere('type', 'LIKE', "%$query%")
+                        ->orWhere('description', 'LIKE', "%$query%")
+                        ->orWhere('price', 'LIKE', "%$query%");
+    })->get();
+    foreach ($remplacements as $remplacement) {
+        $results['Remplacement'][$remplacement->id] = $remplacement->name;
+    }
 
-    //     $cars = Car::where('name', 'LIKE', '%' . $searchTerm . '%')
-    //                 ->orWhere('status', 'LIKE', '%' . $searchTerm . '%')
-    //                 ->orWhere('brand_id', 'LIKE', '%' . $searchTerm . '%')
-    //                 ->get();
-
-    //     $brands = Car::where('name', 'LIKE', '%' . $searchTerm . '%')
-    //                     ->orWhere('category_id', 'LIKE', '%' . $searchTerm . '%')
-    //                     ->get();
-
-    //     // Consolidar los resultados en un solo array asociativo
-    //     $results = [
-    //         'users' => $users,
-    //         'services' => $services,
-    //         'remplacements' => $remplacements,
-    //         'categories' => $categories,
-    //         'cars' => $cars,
-    //         'brands' => $brands,
-    //     ];
-
-    //     // Retorna los resultados como respuesta JSON
-    //     return view('admin.search'); 
-    // }
+    return view('admin.busqueda', ['query' => $query, 'results' => $results]);
+}
 }

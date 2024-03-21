@@ -51,38 +51,48 @@ class UserController extends Controller
     }
 
     public function create(Request $request) {
-        dd($request->all());
         $data = $request->validate([
             'name' => 'required|string',
             'surname' => 'required|string',
-            'email' => 'required','string',
-            'phone' => 'required|string',
-            'status' => 'required|int',
-            'level' => 'required|int',
-            'image' => 'required|string'
+            'email' => 'required|string',
+            'phone' => 'required|numeric',
+            'password' => 'required|string',
+            'level_id' => 'nullable|string', // Hacer que level_id sea opcional
+            'image' => 'nullable|string', // Hacer que image sea opcional
         ]);
-        $users = User::create([
-            'name'=>$data['name'],
-            'surname'=>$data['surname'],
-            'email'=>$data['email'],
-            'phone'=>$data['phone'],
-            'status'=>$data['status'],
-            'level'=>$data['level'],
-            'image'=>$data['image']
+    
+        // Encriptar la contraseña con bcrypt
+        $hashedPassword = bcrypt($data['password']);
+    
+        // Verificar si level_id está presente en $data, si no, asignar un valor predeterminado
+        $levelId = array_key_exists('level_id', $data) ? $data['level_id'] : 1;
+    
+        // Verificar si image está presente en $data, si no, asignar un valor predeterminado
+        $image = array_key_exists('image', $data) ? $data['image'] : 'placeholder.jpg';
+    
+        $user = User::create([
+            'name' => $data['name'],
+            'surname' => $data['surname'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'password' => $hashedPassword,
+            'level_id' => $levelId,
+            'image' => $image,
+            // Otros campos según sea necesario
         ]);
-        if ($users) {
+    
+        if ($user) {
             $object = [
                 "response" => 'Success. Item saved correctly.',
-                "data" => $users,
+                "data" => $user,
             ];
             return response()->json($object);
-        }else{
+        } else {
             $object = [
                 "response" => 'Error: Something went wrong, please try again.'
             ];
             return response()->json($object);
         }
-        
     }
 
     public function update( Request $request){

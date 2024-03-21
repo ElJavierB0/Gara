@@ -17,7 +17,7 @@ class CarController extends Controller
                 "Nombre" => $car->name,
                 "Estado" => $car->status,
                 "Imagen" => $car->img,
-                "Marca" => $car->brand,
+                "Marca" => $car->brand_id,
                 "created" => $car->created_at,
                 "updated" => $car->updated_at
             ];
@@ -33,7 +33,7 @@ class CarController extends Controller
             "Nombre" => $cars->name,
             "Estado" => $cars->status,
             "Imagen" => $cars->img,
-            "Marca" => $cars->brand,
+            "Marca" => $cars->brand_id,
             "created" => $cars->created_at,
             "updated" => $cars->updated_at
         ];

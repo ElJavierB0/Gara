@@ -30,7 +30,7 @@
             </div>
             
             <div class="col-md-4">
-                <div class="card bg-warning text-white mb-4">
+                <div class="card bg-info text-white mb-4">
                     <div class="card-body">Autos</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="{{ route('car') }}">Ver Carros</a>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card bg-primary text-white mb-4">
+                <div class="card bg-warning  text-white mb-4">
                     <div class="card-body">Categorias</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="{{ route('category') }}">Ver Categorias</a>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card bg-warning text-white mb-4">
+                <div class="card bg-danger text-white mb-4">
                     <div class="card-body">Refacciones</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="{{ route('remplacement') }}">Ver Refacciones</a>

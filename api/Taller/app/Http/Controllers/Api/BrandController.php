@@ -16,7 +16,7 @@ class BrandController extends Controller
                 "id" => $brand->id,
                 "Nombre" => $brand->name,
                 "Logo" => $brand->logo,
-                "Categoria" => $brand->category,
+                "Categoria" => $brand->category_id,
                 "created" => $brand->created_at,
                 "updated" => $brand->updated_at
             ];
@@ -31,7 +31,7 @@ class BrandController extends Controller
             "id" => $brands->id,
             "Nombre" => $brands->name,
             "Logo" => $brands->logo,
-            "Categoria" => $brands->category,
+            "Categoria" => $brands->category_id,
             "created" => $brands->created_at,
             "updated" => $brands->updated_at
         ];

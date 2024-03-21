@@ -57,12 +57,12 @@ class AdminController extends Controller
     {
         $request->validate([
             'id' => 'required|int',
-            'name' => 'string|max:255',
-            'surname' => 'string|max:255',
-            'email' => 'string|email|max:255|unique:users,email,'.$request->id,
-            'phone' => 'string|max:10',
-            'password' => 'string|min:8', // Se ha cambiado la validación para aceptar contraseñas de hasta 255 caracteres
-            'image' => 'string|max:255',
+            'name' => 'nullable|string|max:255',
+            'surname' => 'nullable|string|max:255',
+            'email' => 'nullable|string|email|max:255|unique:users,email,'.$request->id,
+            'phone' => 'nullable|string|max:10',
+            'password' => 'nullable|string|min:8', // Se ha cambiado la validación para aceptar contraseñas de hasta 255 caracteres
+            'image' => 'nullable|string|max:255',
             // Agrega aquí más validaciones según tus necesidades
         ]);
     

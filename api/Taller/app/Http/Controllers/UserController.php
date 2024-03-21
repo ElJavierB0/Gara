@@ -52,7 +52,7 @@ class UserController extends Controller
         return redirect()->route('user')->with('success', 'Usuario eliminado correctamente!');
     }    
 
-    public function store(Request $request)
+    public function create(Request $request)
 {
     // Verifica si el usuario tiene level_id igual a 3
     if (Auth::user()->level_id != 3) {

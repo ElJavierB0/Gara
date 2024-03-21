@@ -90,7 +90,7 @@
     </div>
 </main>
 
-<<!-- Modal para agregar usuario -->
+<!-- Modal para agregar usuario -->
 <div class="modal fade" id="exampleModalAgregar" tabindex="-1" aria-labelledby="exampleModalLabelAgregar" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
