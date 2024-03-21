@@ -69,7 +69,7 @@
                             No
                         @endif
                     </td>
-                    <td>{{ $car->brand->name }}</td> 
+                    <td>{{ $car->brand ? $car->brand->name : 'Sin marca' }}</td> 
                     <td>
                         <div class="btn-group">
                             <a href="{{ route('car-edit', $car->id) }}" class="btn btn-primary" role="button"><i class="fas fa-edit"></i></a>
@@ -126,7 +126,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="img" class="form-label">Imagen</label>
-                        <input type="file" class="form-control" id="img" name="img">
+                        <input type="file" class="form-control" id="img" name="img" required>
                     </div>
                     <div class="mb-3">
                         <label for="brand_id" class="form-label">Marca</label>

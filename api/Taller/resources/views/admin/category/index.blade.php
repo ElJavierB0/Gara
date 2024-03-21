@@ -115,7 +115,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="details" class="form-label">Detalles</label>
-                        <textarea class="form-control" id="details" name="details" rows="3"></textarea>
+                        <textarea class="form-control" id="details" name="details" rows="3" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>

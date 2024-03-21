@@ -62,7 +62,7 @@ class AdminController extends Controller
             'email' => 'nullable|string|email|max:255|unique:users,email,'.$request->id,
             'phone' => 'nullable|string|max:10',
             'password' => 'nullable|string|min:8', // Se ha cambiado la validación para aceptar contraseñas de hasta 255 caracteres
-            'image' => 'nullable|string|max:255',
+            'image' => 'sometimes|image',
             // Agrega aquí más validaciones según tus necesidades
         ]);
     

@@ -129,7 +129,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="type" class="form-label">Tipo</label>
-                        <select class="form-select" id="type" name="type">
+                        <select class="form-select" id="type" name="type" required>
                             <option value="Servicio">Servicio</option>
                             <option value="Reparacion">Reparación</option>
                             <option value="Modificacion">Modificación</option>
@@ -137,11 +137,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="desc" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
+                        <textarea class="form-control" id="desc" name="desc" rows="3" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="img" class="form-label">Imagen</label>
-                        <input type="file" class="form-control" id="img" name="img">
+                        <input type="file" class="form-control" id="img" name="img" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>

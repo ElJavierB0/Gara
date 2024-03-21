@@ -22,7 +22,7 @@ class EmployeeController extends Controller
             'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$id,
             'phone' => 'required|string|max:10',
-            'image' => 'image', // Asegúrate de que sea un archivo de imagen y no solo un nombre de archivo
+            'image' => 'sometimes|image', // Asegúrate de que sea un archivo de imagen y no solo un nombre de archivo
             'level_id' => 'required|in:1,2,3', // Validar que el nivel sea 2 o 3
         ]);
 

@@ -48,7 +48,7 @@ public function update(Request $request, $id)
         'name' => 'required|string|max:255',
         'type' => 'required|string|max:255',
         'price' => 'nullable|int|min:0',
-        'img' => 'nullable|image|max:10240',
+        'img' => 'sometimes|image',
         'description' => 'nullable|string',
     ]);
 

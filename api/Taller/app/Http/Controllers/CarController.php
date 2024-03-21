@@ -46,7 +46,7 @@ class CarController extends Controller
     $validator = Validator::make($request->all(), [
         'name' => 'required|string|max:255',
         'status' => 'required|in:Averiado,Falla Parcial,Buen estado',
-        'img' => 'nullable|string|max:255',
+        'img' => 'sometimes|image',
         'brand_id' => 'exists:brands,id', // Ahora es requerido y se verifica su existencia
     ]);
 

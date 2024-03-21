@@ -69,17 +69,17 @@
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label for="name">Nombre:</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <input type="text" class="form-control" id="name" name="name" required>
                                     <label for="surname">Apellido:</label>
-                                    <input type="text" class="form-control" id="surname" name="surname">
+                                    <input type="text" class="form-control" id="surname" name="surname" required>
                                     <label for="email">Email:</label>
-                                    <input type="text" class="form-control" id="email" name="email">
+                                    <input type="text" class="form-control" id="email" name="email" required>
                                     <label for="phone">Celular:</label>
-                                    <input type="text" class="form-control" id="phone" name="phone">
+                                    <input type="text" class="form-control" id="phone" name="phone" required>
                                     <label for="password">Contraseña:</label>
-                                    <input type="password" class="form-control" id="password" name="password">
+                                    <input type="password" class="form-control" id="password" name="password" required>
                                     <label for="image">Imagen:</label>
-                                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -143,17 +143,17 @@
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label for="name">Nombre:</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <input type="text" class="form-control" id="name" name="name" required>
                                     <label for="surname">Apellido:</label>
-                                    <input type="text" class="form-control" id="surname" name="surname">
+                                    <input type="text" class="form-control" id="surname" name="surname" required>
                                     <label for="email">Email:</label>
-                                    <input type="text" class="form-control" id="email" name="email">
+                                    <input type="text" class="form-control" id="email" name="email" required>
                                     <label for="phone">Celular:</label>
-                                    <input type="text" class="form-control" id="phone" name="phone">
+                                    <input type="text" class="form-control" id="phone" name="phone" required>
                                     <label for="password">Contraseña:</label>
-                                    <input type="password" class="form-control" id="password" name="password">
+                                    <input type="password" class="form-control" id="password" name="password" required>
                                     <label for="image">Imagen:</label>
-                                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

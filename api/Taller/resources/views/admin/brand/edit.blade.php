@@ -19,11 +19,11 @@
                             @method('PUT')
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ $brand->name }}" >
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $brand->name }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="logo" class="form-label">Logo</label>
-                                <input type="file" class="form-control" id="logo" name="logo" value="{{ $brand->logo }}" >
+                                <input type="file" class="form-control" id="logo" name="logo" value="{{ $brand->logo }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="category_id">Categoría</label>
@@ -48,7 +48,7 @@
                         @if($brand->logo)
                         <h5 class="card-title">Vista Previa del Logo</h5>
                         <hr> <!-- División añadida -->
-                        <img src="{{ asset('image/Marcas/' . $brand->logo) }}" alt="{{ $brand->logo }}" class="img-fluid">
+                        <img src="{{ asset('image/Marcas/' . $brand->logo) }}" alt="{{ $brand->logo }}" class="img-fluid" required>
                         @else
                             <p class="text-center">No existe vista previa</p>
                         @endif

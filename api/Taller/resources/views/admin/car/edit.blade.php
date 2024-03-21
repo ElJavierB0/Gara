@@ -31,7 +31,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="img" class="form-label">Imagen</label>
-                                <input type="file" class="form-control" id="img" name="img">
+                                <input type="file" class="form-control" id="img" name="img" required>
                             </div>
                             <div class="mb-3">
                                 <label for="brand_id" class="form-label">Marca</label>
@@ -53,7 +53,7 @@
                         @if($car->img)
                             <h5 class="card-title">Vista Previa del Carro</h5>
                             <hr>
-                            <img src="{{ asset('image/Carros/' . $car->img) }}" alt="Vista Previa del Carro" class="img-fluid">
+                            <img src="{{ asset('image/Carros/' . $car->img) }}" alt="Vista Previa del Carro" class="img-fluid" required>
                         @else
                             <p class="text-center">No hay imagen disponible</p>
                         @endif

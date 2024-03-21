@@ -49,7 +49,7 @@ class ServiceController extends Controller
         'type' => 'nullable|string|in:Servicio,Reparacion,Modificacion',
         'disponibility' => 'nullable|string|in:Disponible,No Disponible', 
         'desc' => 'nullable|string',
-        'img' => 'nullable|image|max:10240',
+        'img' => 'sometimes|image',
     ]);
 
     $services = Service::findOrFail($id);

@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <label for="logo">Logo</label>
-                        <input type="file" class="form-control" id="logo" name="logo">
+                        <input type="file" class="form-control" id="logo" name="logo" required>
                     </div>
                     <div class="form-group">
                         <label for="category_id">Categoría</label>

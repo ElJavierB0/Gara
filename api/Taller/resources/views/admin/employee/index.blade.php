@@ -36,15 +36,15 @@
                             <div class="form-group mb-3">
                                 <input type="hidden" name="id" value="{{ $persona->id }}">
                                 <label for="name">Nombre:</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ $persona->name }}">
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $persona->name }}" required>
                                 <label for="surname">Apellido:</label>
-                                <input type="text" class="form-control" id="surname" name="surname" value="{{ $persona->surname }}">
+                                <input type="text" class="form-control" id="surname" name="surname" value="{{ $persona->surname }}" required>
                                 <label for="email">Email:</label>
-                                <input type="text" class="form-control" id="email" name="email" value="{{ $persona->email }}">
+                                <input type="text" class="form-control" id="email" name="email" value="{{ $persona->email }}" required>
                                 <label for="phone">Celular:</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="{{ $persona->phone }}">
+                                <input type="text" class="form-control" id="phone" name="phone" value="{{ $persona->phone }}" required>
                                 <label for="level_id">Nivel:</label>
-                                <input type="number" class="form-control" id="level_id" name="level_id" value="{{ $persona->level_id }}" min="1" max="3">
+                                <input type="number" class="form-control" id="level_id" name="level_id" value="{{ $persona->level_id }}" min="1" max="3" required>
                             </div>                            
                             <div class="d-flex justify-content-between">
                                 <button type="submit" class="btn btn-primary">Guardar cambios</button>

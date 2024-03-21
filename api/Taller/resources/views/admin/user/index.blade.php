@@ -103,27 +103,27 @@
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="surname" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="surname" name="surname"> <!-- Cambiado a 'apellido' -->
+                        <input type="text" class="form-control" id="surname" name="surname" required> <!-- Cambiado a 'apellido' -->
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Celular</label>
-                        <input type="numeric" class="form-control" id="phone" name="phone">
+                        <input type="numeric" class="form-control" id="phone" name="phone" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input type="password" class="form-control" id="password" name="password" required>
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imagen</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen">
+                        <input type="file" class="form-control" id="imagen" name="imagen" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>

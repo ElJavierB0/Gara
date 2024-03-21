@@ -46,13 +46,13 @@
                             <div class="form-group mb-3">
                                 <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                                 <label for="name">Nombre:</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}">
+                                <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}" required>
                                 <label for="surname">Apellido:</label>
-                                <input type="text" class="form-control" id="surname" name="surname" value="{{ auth()->user()->surname }}">
+                                <input type="text" class="form-control" id="surname" name="surname" value="{{ auth()->user()->surname }}" required>
                                 <label for="email">Email:</label>
-                                <input type="text" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}">
+                                <input type="text" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" required>
                                 <label for="phone">Celular:</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="{{ auth()->user()->phone }}">
+                                <input type="text" class="form-control" id="phone" name="phone" value="{{ auth()->user()->phone }}" required>
                                 <label for="password">Contraseña:</label>
                                 <input type="password" class="form-control" id="password" name="password">
                                 <label for="password_confirmation">Confirmar Contraseña:</label>

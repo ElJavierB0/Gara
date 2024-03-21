@@ -24,22 +24,22 @@
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="surname" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" id="surname" name="surname" value="{{ $user->surname }}">
+                                <input type="text" class="form-control" id="surname" name="surname" value="{{ $user->surname }}" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Teléfono</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->phone }}">
+                                <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->phone }}" required>
                             </div>
 
                         </form>
