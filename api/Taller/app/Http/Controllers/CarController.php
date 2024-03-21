@@ -6,6 +6,9 @@ use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Brand; // Asegúrate de importar el modelo Brand
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+
 
 class CarController extends Controller
 {
@@ -41,36 +44,63 @@ class CarController extends Controller
     return view('admin.car.edit', compact('car', 'brand', 'brands'));
     }
 
-    public function update(Request $request, Car $car)
+    public function update(Request $request, $id)
 {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|string|max:255',
-        'status' => 'required|in:Averiado,Falla Parcial,Buen estado',
-        'img' => 'sometimes|image',
-        'brand_id' => 'exists:brands,id', // Ahora es requerido y se verifica su existencia
+    $request->validate([
+        'name' => 'required',
+        'status' => 'required',
+        'img' => 'nullable|image',
+        'brand_id' => ['required', 'integer', Rule::exists('brands', 'id')],// Ahora es requerido y se verifica su existencia
     ]);
 
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+     // Obtener la marca a actualizar
+     $car = Car::find($id);
+
+     if (!$car) {
+        return back()->withErrors(['error' => 'Carro no encontrado.']);
+    }
+   
+    // Actualizar los campos del auto
+    $car->name = $request->name;
+    $car->status = $request->status;
+    $car->brand_id = $request->brand_id;
+
+    // Si se proporciona una nueva imagen, actualizarla
+    if ($request->hasFile('img')) {
+        // Eliminar la imagen anterior, si existe
+        if ($car->img) {
+            Storage::delete('image/Carros/' . $car->img);
+        }
+
+        // Generar un nombre único para la imagen
+        $imageName = uniqid() . '.' . $request->img->getClientOriginalExtension();
+
+        // Guardar la nueva imagen en la carpeta storage/app/image/Carros
+        $request->img->move(public_path('image/Carros'), $imageName);
+
+        // Actualizar el campo de la imagen en la base de datos con el nombre único
+        $car->img = $imageName;
     }
 
-    $car->update($request->all());
-
-    return redirect()->route('car', ['car' => $car->id])->with('success', 'Auto actualizado correctamente.');
+     // Guardar los cambios
+     if ($car->save()) {
+        return redirect()->route('car')->with('success', '¡El auto se ha actualizado correctamente!');
+    
 }
 
+}
+
+
+
+
 public function destroy($id)
-{
-    $car = Car::find($id);
+    {
+        $car = Car::findOrFail($id);
+        
+        // Eliminar la marca
+        $car->delete();
 
-    if (!$car) {
-        return redirect()->back()->with('error', 'El auto no existe.');
+        // Redireccionar de vuelta a la página de marcas con un mensaje de éxito
+        return redirect()->route('car')->with('success', 'Carro eliminada correctamente');
     }
-
-    $car->delete();
-
-    return redirect()->back()->with('success', '¡Auto eliminado correctamente!');
-}    
-
-
 }

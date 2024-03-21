@@ -113,6 +113,7 @@
 </main>
 
 <!-- Modal para agregar servicio -->
+<!-- Modal para agregar servicio -->
 <div class="modal fade" id="exampleModalAgregar" tabindex="-1" aria-labelledby="exampleModalLabelAgregar" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -136,6 +137,13 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="disponibility" class="form-label">Disponibilidad</label>
+                        <select class="form-select" id="disponibility" name="disponibility" required>
+                            <option value="Disponible">Disponible</option>
+                            <option value="No Disponible">No Disponible</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="desc" class="form-label">Descripción</label>
                         <textarea class="form-control" id="desc" name="desc" rows="3" required></textarea>
                     </div>
@@ -150,3 +158,4 @@
     </div>
 </div>
 @endsection
+

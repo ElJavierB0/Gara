@@ -37,7 +37,7 @@ Route::post('/Remplacements/{id}/update', [RemplacementController::class, 'updat
 Route::get('/Brands', [BrandController::class, 'list']);
 Route::get('/Brands/{id}', [BrandController::class, 'item']);
 Route::post('/Brands/create', [BrandController::class, 'create']);
-Route::post('/Brands/{id}/update', [BrandController::class, 'update']);
+Route::post('/Brands/update', [BrandController::class, 'update']);
 
 Route::get('/Cars', [CarController::class, 'list']);
 Route::get('/Cars/{id}', [CarController::class, 'item']);

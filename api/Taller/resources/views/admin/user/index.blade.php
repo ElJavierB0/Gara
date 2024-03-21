@@ -67,7 +67,6 @@
                     </td>
                     <td>
                         <div class="btn-group">
-                            <a href="{{ route('user-edit', $user->id) }}" class="btn btn-primary" role="button"><i class="fas fa-edit"></i></a>
                             <form action="{{ route('user-delete', $user->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')

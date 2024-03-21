@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\Service;
+use Illuminate\Support\Facades\Validator;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,32 +19,33 @@ class ServiceController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Validar los datos del formulario
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'type' => 'required|string|in:Servicio,Reparacion,Modificacion',
-            'desc' => 'required|string',
-            'img' => 'required|string|max:255', // Max 10MB, ajusta el tamaño según tus necesidades
-        ]);
+{
+    $data = $request->validate([
+        'name' => 'required|string',
+        'type' => 'required|string|in:Servicio,Reparacion,Modificacion',
+        'disponibility' => 'required|string|in:Disponible,No Disponible', 
+        'desc' => 'required|string',
+        'img' => 'required|image',
+   
+    ]);
 
-        // Subir la img si se proporcionó
-        $imgPath = null;
-        if ($request->hasFile('img')) {
-            $imgPath = $request->file('img')->store('services', 'public');
-        }
+    $imageName = uniqid() . '.' . $request->img->getClientOriginalExtension();
+    $request->img->move(public_path('image/Servicios'), $imageName);
 
-        // Crear el servicio
-        Service::create([
-            'name' => $request->name,
-            'type' => $request->type,
-            'disponibility' => 'Disponible', // Por defecto
-            'desc' => $request->desc,
-            'img' => $imgPath ? 'image/Servicios/' . $imgPath : null, // Concatenar la ruta de la img
-        ]);
+    $service = new Service();
+    $service->name = $data['name'];
+    $service->type = $data['type'];
+    $service->disponibility = $data['disponibility'];
+    $service->img = $imageName;
+    $service->desc = $data['desc'];
+   
+    $service->save();
 
-        return redirect()->route('service')->with('success', 'Servicio agregado correctamente.');
-    }
+    return redirect()->route('service')->with('success', '¡El servicio se ha creado correctamente!');
+}
+
+
+
 
     public function update(Request $request, $id)
 {

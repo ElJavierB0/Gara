@@ -14,7 +14,7 @@
             <div class="col-md-6">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('brand-update', ['id' => $brand->id]) }}">
+                        <form method="POST" action="{{ route('brand-update', ['id' => $brand->id]) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
@@ -23,7 +23,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="logo" class="form-label">Logo</label>
-                                <input type="file" class="form-control" id="logo" name="logo" value="{{ $brand->logo }}" required>
+                                <input type="file" class="form-control" id="logo" name="logo" required>
                             </div>
                             <div class="form-group">
                                 <label for="category_id">Categoría</label>
@@ -38,6 +38,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Actualizar</button>
                         </form>
+                        
                     </div>
                 </div>
             </div>

@@ -46,21 +46,26 @@
                             <div class="form-group mb-3">
                                 <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                                 <label for="name">Nombre:</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}" required>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}">
                                 <label for="surname">Apellido:</label>
-                                <input type="text" class="form-control" id="surname" name="surname" value="{{ auth()->user()->surname }}" required>
+                                <input type="text" class="form-control" id="surname" name="surname" value="{{ auth()->user()->surname }}">
                                 <label for="email">Email:</label>
-                                <input type="text" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" required>
+                                <input type="text" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}">
                                 <label for="phone">Celular:</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="{{ auth()->user()->phone }}" required>
+                                <input type="text" class="form-control" id="phone" name="phone" value="{{ auth()->user()->phone }}">
                                 <label for="password">Contraseña:</label>
                                 <input type="password" class="form-control" id="password" name="password">
                                 <label for="password_confirmation">Confirmar Contraseña:</label>
                                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                                 <label for="image">Imagen:</label>
-                                <input type="file" class="form-control" id="image" name="image">
+                                <div class="mb-3">
+                                    <img src="{{ asset('image/Perfil/' . auth()->user()->image) }}" alt="Imagen actual" class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </div>
                         </form>
                     </div>
                     

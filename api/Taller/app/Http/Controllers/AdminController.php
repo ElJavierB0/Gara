@@ -57,39 +57,44 @@ class AdminController extends Controller
     {
         $request->validate([
             'id' => 'required|int',
-            'name' => 'nullable|string|max:255',
-            'surname' => 'nullable|string|max:255',
-            'email' => 'nullable|string|email|max:255|unique:users,email,'.$request->id,
-            'phone' => 'nullable|string|max:10',
-            'password' => 'nullable|string|min:8', // Se ha cambiado la validación para aceptar contraseñas de hasta 255 caracteres
-            'image' => 'sometimes|image',
-            // Agrega aquí más validaciones según tus necesidades
+            'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$request->id,
+            'phone' => 'required|string|max:10',
+            'password' => 'nullable|string', // La contraseña es opcional
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Imagen opcional, hasta 2MB
         ]);
-    
+
         $user = User::findOrFail($request->id);
-    
+
         $userData = [
             'name' => $request->name,
             'surname' => $request->surname,
             'email' => $request->email,
             'phone' => $request->phone,
-            'image' => $request->image,
-            // Agrega aquí más campos según tus necesidades
+            // Conserva la imagen actual si no se proporciona una nueva
+            'image' => $user->image,
         ];
-    
-        // Verificar si se proporcionó una nueva contraseña
+
+        // Si se proporciona una nueva imagen, actualizarla
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('assets/users'), $imageName);
+            $userData['image'] = $imageName;
+        }
+
+        // Verificar si se proporcionó una nueva contraseña y actualizarla si es así
         if ($request->password) {
-            // Si se proporcionó, incluir la contraseña en los datos del usuario
             $userData['password'] = Hash::make($request->password);
         }
-    
+
         $user->update($userData);
-    
+
         return redirect()->back()->with('success', '¡Usuario actualizado correctamente!');
     }
-    
-    
-        public function store(Request $request)
+
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -97,7 +102,7 @@ class AdminController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email',
             'phone' => 'nullable|string|max:10',
             'password' => 'required|string|min:8',
-            'image' => 'image', // Eliminada la validación específica del tipo de imagen
+            'image' => 'nullable|image', // Validación de imagen
         ]);
 
         $user = new User();
@@ -105,25 +110,22 @@ class AdminController extends Controller
         $user->surname = $request->surname;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password); // Hashear la contraseña
         $user->status = 1; // Establecer el estado predeterminado
         $user->level_id = 3; // Establecer el nivel predeterminado
 
-        // Guardar la imagen sin especificar un nombre específico
-        $username = $request->name;
-
-        // Establecer el nombre de la imagen utilizando el nombre de usuario
-        $imageName = $username . '.' . $request->image->extension();
-        
-        // Mover la imagen a la carpeta deseada
-        $request->image->move(public_path('image/Perfil'), $imageName);
-        
-        // Establecer la ruta de la imagen en la base de datos
-        $user->image = asset('image/Perfil/' . $imageName);
+        // Guardar la imagen con un nombre único
+        if ($request->hasFile('image')) {
+            $imageName = uniqid() . '.' . $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('image/Perfil'), $imageName);
+            $user->image = asset('image/Perfil/' . $imageName);
+        }
         
         $user->save();
         return redirect()->back()->with('success', '¡Administrador añadido correctamente!');
     }
+    
+    
 
     public function storeEmployee(Request $request)
     {

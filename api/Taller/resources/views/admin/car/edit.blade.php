@@ -14,7 +14,7 @@
             <div class="col-md-6">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('car-update', ['car' => $car->id]) }}">
+                        <form method="POST" action="{{ route('car-update', ['car' => $car->id]) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">

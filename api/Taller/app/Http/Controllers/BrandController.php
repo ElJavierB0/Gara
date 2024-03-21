@@ -6,6 +6,8 @@ use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
+
 
 class BrandController extends Controller
 {
@@ -46,23 +48,49 @@ class BrandController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'logo' => 'sometimes|image',
-        'category_id' => ['required', 'int', Rule::exists('categories', 'id')],
-    ]);
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => ['required', 'integer', Rule::exists('categories', 'id')],
+        ]);
+    
+        // Obtener la marca a actualizar
+        $brand = Brand::find($id);
+    
+        if (!$brand) {
+            return back()->withErrors(['error' => 'Marca no encontrada.']);
+        }
+    
+        // Actualizar los campos
+        $brand->name = $request->name;
+        $brand->category_id = $request->category_id;
+    
+        // Si se proporciona una nueva imagen, actualizarla
+        if ($request->hasFile('logo')) {
+            // Eliminar la imagen anterior, si existe
+            if ($brand->logo) {
+                Storage::delete('image/Marcas/' . $brand->logo);
+            }
+    
+            // Generar un nombre único para la imagen
+            $imageName = uniqid() . '.' . $request->logo->getClientOriginalExtension();
+    
+            // Guardar la nueva imagen en la ruta especificada con el nombre único
+            $request->logo->move(public_path('image/Marcas'), $imageName);
 
-    $brand = Brand::findOrFail($id);
-
-    $brand->update([
-        'name' => $request->name,
-        'logo' => $request->logo,
-        'category_id' => $request->category_id,
-    ]);
-
-    return redirect()->route('brand')->with('success', 'Marca actualizada correctamente');
-}
+    
+            // Actualizar el campo de la imagen en la base de datos con el nombre único
+            $brand->logo = $imageName;
+        }
+    
+        // Guardar los cambios
+        if ($brand->save()) {
+            return redirect()->route('brand')->with('success', '¡La marca se ha actualizado correctamente!');
+        } else {
+            return back()->withErrors(['error' => 'Error al actualizar la marca. Por favor, inténtelo de nuevo.']);
+        }
+    }
 
     public function delete($id)
     {
