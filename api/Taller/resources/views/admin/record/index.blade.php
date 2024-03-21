@@ -35,12 +35,23 @@
                         <td>{{ $loop->index + $records->firstItem() }}</td>
                         <td>#{{ $record->id }}</td>
                         <td>
+                            @php
+                                $found = false;
+                            @endphp
                             @foreach($empleados as $empleado)
-                                    @if($empleado->id == $record->employee_id)
-                                        {{ $empleado->name }} {{ $empleado->surname }}
-                                    @endif
+                                @if($empleado->id == $record->employee_id)
+                                    {{ $empleado->name . ' ' . $empleado->surname }}
+                                    @php
+                                        $found = true;
+                                    @endphp
+                                    @break
+                                @endif
                             @endforeach
+                            @if(!$found)
+                                N/E
+                            @endif
                         </td>
+                        
                         <td>{{ $record->remplacement->name ?? 'N/C' }}</td>
                         <td>{{ $record->service ? 'Sí' : 'No' }}</td>
                         <td>{{ $record->date }}</td>
