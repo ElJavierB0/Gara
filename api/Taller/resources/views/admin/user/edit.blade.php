@@ -42,15 +42,6 @@
                                 <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->phone }}">
                             </div>
 
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" name="password">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
-                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -60,7 +51,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        Contraseña y Otros Campos
+                        Otros Campos
                     </div>
                     <div class="card-body">
                         <div class="mb-3">

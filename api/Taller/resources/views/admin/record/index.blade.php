@@ -23,7 +23,6 @@
                 <tr>
                     <th>Registro</th>
                     <th>Id</th>
-                    <th>Usuario</th>
                     <th>Empleado</th>
                     <th>Refaccion</th>
                     <th>Servicio</th>
@@ -36,20 +35,13 @@
                         <td>{{ $loop->index + $records->firstItem() }}</td>
                         <td>#{{ $record->id }}</td>
                         <td>
-                            @foreach($usuarios as $usuario)
-                                    @if($usuario->id == $record->user_id)
-                                        {{ $usuario->name }} {{ $usuario->surname }}
-                                    @endif
-                            @endforeach
-                        </td>
-                        <td>
                             @foreach($empleados as $empleado)
                                     @if($empleado->id == $record->employee_id)
                                         {{ $empleado->name }} {{ $empleado->surname }}
                                     @endif
                             @endforeach
                         </td>
-                        <td>{{ $record->remplacement->name }}</td>
+                        <td>{{ $record->remplacement->name ?? 'N/C' }}</td>
                         <td>{{ $record->service ? 'Sí' : 'No' }}</td>
                         <td>{{ $record->date }}</td>
                     </tr>
